@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <title>Giriş Kontrol</title>
+</head>
+<body>
 <?php
 
 if(isset($_POST["kayit"])){
@@ -36,32 +46,58 @@ if(isset($_POST["kayit"])){
     $sql = "INSERT INTO hastalar (`hasta_adi`, `hasta_soyadi`, `hasta_eposta`, `hasta_TC`, `hasta_sifre`) VALUES
         (?,?,?,?,?)";
     
-    // ifademiniz hazırlıyoruz. parse edilir ve DB sunucu saklanır. Tekrar tekrar kullanılabilir
-    
+    $sql2 = "Select * from hastalar";
+    $hastaKayitlar = mysqli_query($conn,$sql2);
+
     $stmt = mysqli_prepare($conn,$sql);
     // sorgumuzda çalıştırılacak parametreleri gönderiyoruz  is -> i = int ve s = string
     mysqli_stmt_bind_param($stmt, "sssss", $ad, $soyad,$email,$tcKimlik,$sifre);
     // sorgu çalıştır
-    $result = mysqli_stmt_execute($stmt);
+    
     $kayitlar = mysqli_stmt_get_result($stmt);
     // ---------------------------------------------------------------------------------------
-    function Yonlendir($url,$zaman = 0){
-        if($zaman != 0){
-        header("Refresh: $zaman; url=$url");
-        }
-        else header("Location: $url");
-        }
     
-    if($result){
-        session_start();
-        $_SESSION["hasta_adi"] = $ad;
-        $_SESSION["hasta_soyadi"] = $soyad;
-        $_SESSION["hasta_eposta"] = $email;
-        header("location:userAccountInfo.php");
+    $kayitMevcut = false;
+
+    if(mysqli_num_rows($hastaKayitlar) > 0){
+        while($row = mysqli_fetch_assoc($hastaKayitlar)){
+            $kullaniciEmail = $row["hasta_eposta"];
+            $kullaniciTC = $row["hasta_TC"];
+
+            if($kullaniciEmail == $email || $kullaniciTC == $tcKimlik){
+                echo("<div class='alert alert-danger' role='alert'>
+                    Bu Email veya TC Kimlik ile Daha Önceden Kayıt Oluşturulmuş Lütfen Tekrar Deneyiniz.
+                </div>");
+                header("Refresh: 2; ../loginRegisterScreen.html");
+                $kayitMevcut = true;
+            }
+        }
     }
-    else{
-        Yonlendir("../loginRegisterScreen.html");
+
+    if($kayitMevcut == false){
+        $result = mysqli_stmt_execute($stmt);
+        
+        if($result){    
+            echo("<div class='alert alert-success' role='alert'>
+                Kaydınız Başarılı Bir Şekilde Oluşturulmuştur.
+              </div>");
+            session_start();
+            $_SESSION["hasta_adi"] = $ad;
+            $_SESSION["hasta_soyadi"] = $soyad;
+            $_SESSION["hasta_eposta"] = $email;
+            header("Refresh: 2; userAccountInfo.php");
+        }
+        else{
+            echo("<div class='alert alert-danger' role='alert'>
+                    Kayıt Oluşturulurken Bir Hata Meydana Geldi.
+                </div>");
+            header("Refresh: 2; ../loginRegisterScreen.html");
+        }
     }
+    
 }
 
 ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+</body>
+</html>

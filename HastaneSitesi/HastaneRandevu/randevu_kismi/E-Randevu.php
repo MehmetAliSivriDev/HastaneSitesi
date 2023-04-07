@@ -27,6 +27,8 @@
 </head>
 <body>
 
+  <?php session_start(); ?>
+
   <div class="preloader"></div>
     
   <header class="topbar">
@@ -104,7 +106,7 @@
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="50" height="50" class="rounded-circle">
-              <p class="profileName">Kullanıcı Adı</p>
+              <p class="profileName"><?php echo("$_SESSION[hasta_adi] $_SESSION[hasta_soyadi]"); ?></p>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="../../userAccountInfo.html">Hesap Ek Bilgilerini Güncelle</a>
