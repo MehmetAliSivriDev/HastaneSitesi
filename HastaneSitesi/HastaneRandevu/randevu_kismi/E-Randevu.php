@@ -27,7 +27,7 @@
 </head>
 <body>
 
-  <?php session_start(); ?>
+<?php  session_start();?>
 
   <div class="preloader"></div>
     
@@ -216,8 +216,7 @@
       <script src="Bootstrap/bootstrap-5.2.3-dist/bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
 
       <script>
-        var uzmanError = true , 
-        hastError = true;
+        var hastError = true;
 
          function ValidateHastane(){
             if(form1.hastane.value == 0)
