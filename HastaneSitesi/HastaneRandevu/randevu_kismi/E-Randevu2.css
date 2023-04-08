@@ -1,0 +1,566 @@
+
+.section {
+    padding: 100px 0;
+}
+  
+  .section-sm {
+    padding: 70px 0;
+  }
+  
+  .section-bottom {
+    padding-bottom: 100px;
+  }
+  
+  .section-title {
+    margin-bottom: 70px;
+  }
+  
+  .section-title h2 {
+    color: #223a66;
+  }
+  
+  .appoinment-content {
+    position: relative;
+  }
+  
+  .appoinment-content img {
+    width: 85%;
+  }
+  
+  .appoinment-content .emergency {
+    position: absolute;
+    content: "";
+    right: 10px;
+    bottom: 20px;
+    background: #223a66;
+    padding: 48px;
+  }
+  
+  .appoinment-content .emergency h2 {
+    color: #fff;
+  }
+  
+  .appoinment-content .emergency i {
+    margin-right: 10px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .appoinment-form {
+    margin-top: 50px;
+    
+  }
+  
+  .appoinment-form .form-control {
+    background: #f4f9fc;
+    height: 55px;
+    border-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .appoinment-form textarea.form-control {
+    height: auto;
+  }
+  
+  section div div form a.btn {
+    display: inline-block;
+    font-size: 14px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+    padding: .75rem 2rem;
+    font-family: "Exo", sans-serif;
+    text-transform: uppercase;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    transition: all .35s ease;
+    
+    
+  }
+  
+  section div div form a.btn.btn-icon i {
+    border-left: 1px solid rgba(255, 255, 255, 0.09);
+    padding-left: 15px;
+  }
+  
+  section div div form a.btn:focus {
+    outline: 0px;
+    box-shadow: none;
+  }
+  
+  section div div form a.btn-main {
+    background: #223a66;
+    color: #fff;
+    border-color: #223a66;
+  }
+  
+  section div div form a.btn-main:hover {
+    background: #e12454;
+    border-color: #e12454;
+    color: #fff;
+  }
+  
+  
+  section div div form a.btn-round-full {
+    border-radius: 50px;
+  }
+  
+  section div div form a.btn.active:focus, .btn:active:focus, .btn:focus {
+    outline: 0;
+  }
+  
+  .text-lg {
+    font-size: 3.75rem;
+  }
+  
+  .text-lg {
+    font-size: 50px;
+  }
+  
+  .gray-bg {
+    background: #f4f9fc;
+  }
+  
+  @media (max-width: 480px) {
+    .text-lg {
+      font-size: 28px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .text-lg {
+      font-size: 28px;
+    }
+  }
+  
+  
+
+  #poliError,#dateError,#timeError,#dokError{
+    font-size: 15px;
+      padding-top:10px;
+      display: block;
+      color:red;
+  }
+
+
+
+
+
+  
+
+
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.appointment-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #f5f5f5;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.mb-4 {
+  margin-bottom: 2rem;
+}
+
+.mr-2 {
+  margin-right: 1rem;
+}
+
+.mb-3 {
+  margin-bottom: 1.5rem;
+}
+
+.form-group-2 {
+  position: relative;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn:hover {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn:active {
+  color: #fff;
+  background-color: #0062cc;
+  border-color: #005cbf;
+}
+
+.btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.btn-main {
+  background-color: #24c2ff;
+  border-color: #24c2ff;
+  font-size: 1.2rem;
+}
+
+.btn-round-full {
+  border-radius: 50px;
+}
+
+.icofont-simple-right {
+  font-size: 1.2rem;
+}
+
+.uygun-saatler {
+  display: flex;
+  justify-content: center;
+}
+
+.item {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  margin-top: 30px;
+  }
+  
+  /* Tab links */
+  .tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+  background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+  background-color: #ccc;
+  }
+  
+  /* Tab content */
+  .tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  margin-top: -1px;
+  }
+  
+  /* Style for appointment form */
+  .appointment-form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+  
+  .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  }
+  
+  /* Style for date and time selection */
+  .uygun-saatler {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  }
+  
+  .item {
+  margin: 10px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  cursor: pointer;
+  }
+  
+  .item:hover {
+  background-color: #ddd;
+  }
+  
+  .tarih {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  }
+  
+  .saatler {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  }
+  
+  .saat {
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  }
+  
+  .saat:hover {
+  background-color: #ddd;
+  }
+  
+  .saat.selected {
+  background-color: #007bff;
+  color: #fff;
+  }
+  
+  /* Style for message input */
+  .form-group-2 {
+  width: 100%;
+  margin-bottom: 20px;
+  }
+  
+  .form-group-2 textarea {
+  border: none;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  padding: 10px;
+  width: 100%;
+  resize: none;
+  }
+  
+  .form-group-2 textarea:focus {
+  background-color: #fff;
+  outline: none;
+  }
+  
+  /* Style for submit button */
+  .btn-main {
+  margin-top: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  padding: 10px 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+  }
+  
+  .btn-main:hover {
+  background-color: #0069d9;
+  }
+
+.appoinment-form {
+  background-color: #f8f9fa;
+  padding: 50px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.uygun-saatler .item {
+  display: inline-block;
+  margin: 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.uygun-saatler .item .tarih {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.uygun-saatler .item .saatler {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.uygun-saatler .item .saatler button {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.uygun-saatler .item .saatler button:hover {
+  background-color: #0069d9;
+}
+
+.form-group-2 textarea {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  resize: none;
+}
+
+.btn-main {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 30px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-main:hover {
+  background-color: #0069d9;
+}.appoinment-form {
+  background-color: #f8f9fa;
+  padding: 50px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.uygun-saatler .item {
+  display: inline-block;
+  margin: 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.uygun-saatler .item .tarih {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.uygun-saatler .item .saatler {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.uygun-saatler .item .saatler button {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.uygun-saatler .item .saatler button:hover {
+  background-color: lightblue;
+}
+
+.form-group-2 textarea {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  resize: none;
+}
+
+.btn-main {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 30px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-main:hover {
+  background-color: #0069d9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+

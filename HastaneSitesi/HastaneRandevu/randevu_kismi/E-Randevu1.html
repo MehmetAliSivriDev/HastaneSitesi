@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Online Randevu</title>
+    <title>Online Randevu1</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='E-Randevu1.css'>
     <script src='E-Randevu.js'></script>
@@ -132,13 +132,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-10 ">
-                        <div class="appoinment-wrap mt-5 mt-lg-0 ">
-                            <h2 class="mb-2 title-color">Hastane Randevusu</h2>
-                            <p class="mb-4">Randevu alma işleminde aşağıda poliklinik, doktor, tarih, adı, soyadı, numarası ve kısa mesaj gibi bilgileri doldurarak randevu alma işlemi tamamlanmış olacaktır. </p>
-                                <form id="#" class="appoinment-form " name="form" method="post" action="#">
+                    <div class="col-lg-6 col-md-10 pt-1">
+                        <div class="appoinment-wrap mt-5 mt-lg-0">
+                            <div class="col">
+                                <h2 class="mb-2 title-color">Hastane Randevusu</h2>
+                                <p class="mb-4">Randevu alma işleminde aşağıda poliklinik ve doktor gibi bilgileri doldurarak randevu alma işlemi bir sonraki sayfaya aktarılacaktır. </p>
+                            </div>
+                            <form id="#" class="appoinment-form " name="form" method="post" action="#">
                                     <div class="row ">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12 pt-2">
                                             <div class="form-group mr-2 mb-3">
                                                 <select class="form-select p-3 " name="poliForm"   id="poliklinikId" onchange="doktorGoster()" >
                                                     <option value="0">Poliklinik Seçin</option>
@@ -160,11 +162,12 @@
                                                 </select>
                                                 <span id="poliError"></span>
                                                 
-
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group mr-2 mb-3">
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-lg-12 pt-3">
+                                            <div class="form-group mr-2 mb-3 " >
                                                 <select class="form-select p-3" name="dokForm"  id="doktorlarId">
                                                     <option value="0" >Doktorlar Seçin</option>
                                                 </select>
@@ -172,52 +175,10 @@
 
                                             </div>
                                         </div>
-                
-                                        <div class="col-lg-6">
-                                            <div class="form-group mr-2 mb-3 ">
-                                                <input name="date" id="date" type="date"  class="form-control date" placeholder="gg/dd/yyyy">
-                                                <span id="dateError"></span>
-                                            </div>
-                                        </div>
-                
-                                        <div class="col-lg-6">
-                                            <div class="form-group mr-2 mb-3">
-                                                <select class="form-select p-3" name="timeForm"  id="exampleFormControlSelect2">
-                                                    <option value="0" >Randevu Saati Seçin</option>
-                                                    <option value="1">08:00</option>
-                                                    <option value="2">08:30</option>
-                                                    <option value="3">09:00</option>
-                                                    <option value="4">09:30</option>
-                                                    <option value="5">10:00</option>
-                                                    <option value="6">10:30</option>
-                                                    <option value="7">11:00</option>
-                                                    <option value="1">11:30</option>
-                                                    <option value="2">12:00</option>
-                                                    <option value="3">12:30</option>
-                                                    <option value="4">13:00</option>
-                                                    <option value="5">13:30</option>
-                                                    <option value="6">14:00</option>
-                                                    <option value="7">14:30</option>
-                                                    <option value="2">15:00</option>
-                                                    <option value="3">15:30</option>
-                                                    <option value="4">16:00</option>
-                                                    <option value="5">16:30</option>
-                                                    <option value="6">17:00</option>
-                                                    
-                                                </select>
-                                                <span id="timeError"></span>
-
-                                            </div>
-                                        </div>
-                                       
-                                       
                                     </div>
-                                    <div class="form-group-2 mb-4 mr-2 mb-3">
-                                        <textarea name="message" id="message" class="form-control " rows="6" placeholder="Mesajınız"></textarea>
-                                        <span class="error"></span>
-                                    </div>
+                                    
             
-                                    <a class="btn btn-main btn-round-full" type="submit" onclick=" ValidateTime(); ValidatePoliklinik();ValidateDoktor();ValidateDate(); kontrol();" >Randevu Al <i class="icofont-simple-right ml-2  "></i></a>
+                                    <a class="btn btn-main btn-round-full " type="submit" onclick="  ValidatePoliklinik();ValidateDoktor();if(poliError == false && dokError == false){window.setTimeout(function(){location.href = 'E-Randevu2.html';}, 1);}" >Devam<i class="icofont-simple-right ml-2 "></i></a>
                                 </form>
                         </div>
                     </div>
@@ -275,9 +236,7 @@ integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0
 
     <script>
         
-        var dateError = true,
-        timeError = true,
-        poliError = true,
+        var poliError = true,
         dokError = true;
         
        
@@ -296,35 +255,7 @@ integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0
             }
         }
 
-        function ValidateTime(){
-
-            if(form.timeForm.value == 0)
-            {
-                document.getElementById("timeError").innerHTML = "Lütfen Bir randevu saati Seçin...";
-                timeError = true;
-            
-            }
-            else
-            {
-                document.getElementById("timeError").innerHTML = "";
-                timeError = false;
-            }
-        }
-
-        function ValidateDate(){
-            let x = document.forms["form"]["date"].value;
-            if (x == "") {
-                document.getElementById("dateError").innerHTML = "Lütfen Bir tarih Seçin...";
-                dateError = true;
-            }
-            else{
-                document.getElementById("dateError").innerHTML = "";
-                dateError = false;
-            }
-
-        }
-
-        
+                
         function ValidateDoktor(){
 
             if(form.dokForm.value == 0)
@@ -340,16 +271,6 @@ integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0
             }
             }
 
-
-
-    function kontrol(){
-
-        if (dateError == false && poliError == false && dokError == false && timeError == false) {
-        
-            alert("Randevu talebiniz başarıyla alınmıştır...");
-        }
-    
-    }   
 
     function doktorGoster()
     {
