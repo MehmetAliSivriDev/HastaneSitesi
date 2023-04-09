@@ -110,7 +110,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
   
       </nav>
         
-        <form action="" id="form" method="post" onsubmit="validate();return false">
+        <form action="" id="form" method="post">
             <div class="container rounded bg-white mt-5 mb-5">
                 <div class="row">
                     <div class="col-md-4 border-right">
@@ -125,10 +125,13 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                                 <div class="col-md-12"><label class="labels">Telefon Numarası</label><input name="telefon" type="text" class="form-control" placeholder="Telefon Numarası (İsteğe Bağlı)" value=""></div>
                                 <div class="col-md-12"><label class="labels">Adress</label><input name="adresBilgisi" type="text" class="form-control" placeholder="Adres Bilgileri (İsteğe Bağlı)" value=""></div>
                                 <div class="col-md-12"><label class="labels">Doğum Yeri</label><input name="dogumYeri" type="text" class="form-control" placeholder="Doğum Yeri (İsteğe Bağlı)" value=""></div>
-                                <div class="col-md-12"><label class="labels">Doğum Tarihi</label><input name="dogumTarihi" id="date" type="date" class="form-control tarih" placeholder="dd/mm/yyyy"><span id="dateError" class="dateError" style="color: red;"></span></div>
-                                <div class="col-md-12"><label class="labels">Kan Grubu</label><div class="form-group">
+                                <div class="col-md-12"><label class="labels">Doğum Tarihi</label><input name="dogumTarihi" id="date" type="date" class="form-control tarih" placeholder="dd/mm/yyyy">
+                                  <span id="dateError" class="dateError" style="color: red;"></span>
+                                </div>
+                                <div class="col-md-12"><label class="labels">Kan Grubu</label>
+                                  <div class="form-group">
                                     <select class="form-control" id="kan" name="kanGrubu">
-                                      <option value="0">Kan Grubu Seçiniz</option>
+                                      <option value="">Kan Grubu Seçiniz</option>
                                       <option value="A+">A+</option>
                                       <option value="A-">A-</option>
                                       <option value="B+">B+</option>
@@ -139,10 +142,11 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                                       <option value="0-">0-</option>
                                     </select>
                                     <span id="kanError" class="kanError" style="color: red;"></span>
-                                </div></div>
+                                  </div>
+                                </div>
                                 <div class="col-md-12"><label class="labels">Cinsiyet</label> <div class="form-group cinsiyet">
                                     <select class="form-control" id="cinsiyet" name="cinsiyet">
-                                      <option value="Sec">Cinsiyet Seçiniz</option>
+                                      <option value="sec">Cinsiyet Seçiniz</option>
                                       <option value="0">Erkek</option>
                                       <option value="1">Kız</option>
                                     </select>
@@ -161,6 +165,9 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
             </div>
         </form>
 
+
+        
+<!--------------------------------------------------------------------------------------------------------------->
         <?php 
 
             if(isset($_POST["guncelle"])){
@@ -197,12 +204,48 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
               $dogumTarihi = test_input($_POST["dogumTarihi"]);
               $kanGrubu = test_input($_POST["kanGrubu"]);
               $cinsiyet = test_input($_POST["cinsiyet"]);
+
+      backward:
+              $kanError = true;
+              $cinsiyetError = true;
+              $dateError = true;
+
+              if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+                  if (empty($kanGrubu) ) {
+                      echo '<script>document.getElementById("kanError").innerHTML = "Lütfen Kan Bilginizi Seçiniz!";</script>';
+                      $kanError = true;
+                  } else {
+                      echo '<script>document.getElementById("kanError").innerHTML = "";</script>';
+                      $kanError = false;
+                  }
+
+                  if ($cinsiyet == "sec") {
+                      echo '<script>document.getElementById("cinsiyetError").innerHTML = "Lütfen Cinsiyet Bilginizi Seçiniz!";</script>';
+                      $cinsiyetError = true;
+                  } else {
+                      echo '<script>document.getElementById("cinsiyetError").innerHTML = "";</script>';
+                      $cinsiyetError = false;
+                  }
+                  
+                  if (empty($dogumTarihi)) {
+                      echo '<script>document.getElementById("dateError").innerHTML = "Lütfen Tarih Bilginizi Seçiniz!";</script>';
+                      $dateError = true;
+                  } else {
+                      echo '<script>document.getElementById("dateError").innerHTML = "";</script>';
+                      $dateError = false;
+                  }
+
+              }
+              
               
               // ------------------------------------------------------------------------------------
-              $sql = "UPDATE hastalar SET `hasta_cinsiyet` = '$cinsiyet', `hasta_telefon` = '$telefon', `hasta_dogum_tarihi` = '$dogumTarihi',
-              `hasta_dogum_yeri` = '$dogumYeri', `hasta_adress` = '$adres', `hasta_kan` = '$kanGrubu' WHERE `hasta_eposta` = '$hasta_eposta'";
+                $sql = "UPDATE hastalar SET `hasta_cinsiyet` = '$cinsiyet', `hasta_telefon` = '$telefon', `hasta_dogum_tarihi` = '$dogumTarihi',
+                `hasta_dogum_yeri` = '$dogumYeri', `hasta_adress` = '$adres', `hasta_kan` = '$kanGrubu' WHERE `hasta_eposta` = '$hasta_eposta'";
+            
               
               $result = mysqli_query($conn,$sql);
+              
               // ---------------------------------------------------------------------------------------
 
               if($result){
@@ -212,7 +255,10 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                 $_SESSION["hasta_adi"] =  $hasta_adi;
                 $_SESSION["hasta_soyadi"] = $hasta_soyadi;
                 $_SESSION["hasta_eposta"] = $hasta_eposta;
-                header("Refresh: 2; ../HastaneRandevu/randevu_kismi/E-Randevu.php");
+                if ($kanError == false && $cinsiyetError == false && $dateError == false) {
+                  header("Refresh: 2; ../HastaneRandevu/randevu_kismi/E-Randevu.php");
+                }
+                
                 ob_end_flush();
               }
               else{
@@ -222,7 +268,6 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                 header("Refresh: 2; userAccountInfo.php");
               }
                 
- 
                 
             }
         ?>
@@ -268,58 +313,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
               
           </footer>
 
-            <script>
-            
-            var kanError = true , 
-            cinsiyetError = true,
-            dateError = true;
-
-            function validate(){
-
-                if(form.kan.value == 0)
-                {
-                    document.getElementById("kanError").innerHTML = "Lütfen Kan Bilginizi Seçiniz!";
-                    
-                    kanError = true;
-                }
-                else
-                {
-                    document.getElementById("kanError").innerHTML = "";
-                    kanError = false;
-                }
-            
-
-                if(form.cinsiyet.value == "Sec")
-                {
-                    document.getElementById("cinsiyetError").innerHTML = "Lütfen Cinsiyet Bilginizi Seçiniz!";
-                    
-                    cinsiyetError = true;
-                }
-                else
-                {
-                    document.getElementById("cinsiyetError").innerHTML = "";
-                    cinsiyetError = false;
-                }
-      
-                let x = document.forms["form"]["date"].value;
-                if (x == "") {
-                  document.getElementById("dateError").innerHTML = "Lütfen Tarih Bilginizi Seçiniz!";
-                  dateError = true;
-                }
-                else{
-                  document.getElementById("dateError").innerHTML = "";
-                  dateError = false;
-                }
-
-                if(kanError == false && cinsiyetError == false && dateError == false){
-                  form.submit();
-                }
-            }
-
-
-
-
-            </script>
+          
       
 
     <!-- JavaScript Bundle with Popper -->
