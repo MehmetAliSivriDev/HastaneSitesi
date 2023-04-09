@@ -34,7 +34,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
 
 </head>
 <body>
-  <?php  session_start();?>
+  <?php  ob_start(); session_start();?>
 
   <div class="preloader"></div>
     
@@ -110,7 +110,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
   
       </nav>
         
-        <form action="" id="form">
+        <form action="" id="form" method="post" onsubmit="validate();return false">
             <div class="container rounded bg-white mt-5 mb-5">
                 <div class="row">
                     <div class="col-md-4 border-right">
@@ -122,34 +122,34 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                                 <h4 class="text-right">Ek Hesap Bilgileri</h4>
                             </div>
                             <div class="row mt-3">
-                                <div class="col-md-12"><label class="labels">Telefon Numarası</label><input type="text" class="form-control" placeholder="Telefon Numarası (İsteğe Bağlı)" value=""></div>
-                                <div class="col-md-12"><label class="labels">Adress</label><input type="text" class="form-control" placeholder="Adres Bilgileri (İsteğe Bağlı)" value=""></div>
-                                <div class="col-md-12"><label class="labels">Doğum Yeri</label><input type="text" class="form-control" placeholder="Doğum Yeri (İsteğe Bağlı)" value=""></div>
-                                <div class="col-md-12"><label class="labels">Doğum Tarihi</label><input name="date" id="date" type="date" class="form-control tarih" placeholder="dd/mm/yyyy"><span id="dateError" class="dateError" style="color: red;"></span></div>
+                                <div class="col-md-12"><label class="labels">Telefon Numarası</label><input name="telefon" type="text" class="form-control" placeholder="Telefon Numarası (İsteğe Bağlı)" value=""></div>
+                                <div class="col-md-12"><label class="labels">Adress</label><input name="adresBilgisi" type="text" class="form-control" placeholder="Adres Bilgileri (İsteğe Bağlı)" value=""></div>
+                                <div class="col-md-12"><label class="labels">Doğum Yeri</label><input name="dogumYeri" type="text" class="form-control" placeholder="Doğum Yeri (İsteğe Bağlı)" value=""></div>
+                                <div class="col-md-12"><label class="labels">Doğum Tarihi</label><input name="dogumTarihi" id="date" type="date" class="form-control tarih" placeholder="dd/mm/yyyy"><span id="dateError" class="dateError" style="color: red;"></span></div>
                                 <div class="col-md-12"><label class="labels">Kan Grubu</label><div class="form-group">
-                                    <select class="form-control" id="kan" name="kan">
+                                    <select class="form-control" id="kan" name="kanGrubu">
                                       <option value="0">Kan Grubu Seçiniz</option>
-                                      <option value="1">A+</option>
-                                      <option value="2">A-</option>
-                                      <option value="3">B+</option>
-                                      <option value="4">B-</option>
-                                      <option value="5">AB+</option>
-                                      <option value="6">AB-</option>
-                                      <option value="7">0+</option>
-                                      <option value="8">0-</option>
+                                      <option value="A+">A+</option>
+                                      <option value="A-">A-</option>
+                                      <option value="B+">B+</option>
+                                      <option value="B-">B-</option>
+                                      <option value="AB+">AB+</option>
+                                      <option value="AB-">AB-</option>
+                                      <option value="0+">0+</option>
+                                      <option value="0-">0-</option>
                                     </select>
                                     <span id="kanError" class="kanError" style="color: red;"></span>
                                 </div></div>
                                 <div class="col-md-12"><label class="labels">Cinsiyet</label> <div class="form-group cinsiyet">
                                     <select class="form-control" id="cinsiyet" name="cinsiyet">
-                                      <option value="0">Cinsiyet Seçiniz</option>
-                                      <option value="1">Erkek</option>
-                                      <option value="2">Kız</option>
+                                      <option value="Sec">Cinsiyet Seçiniz</option>
+                                      <option value="0">Erkek</option>
+                                      <option value="1">Kız</option>
                                     </select>
                                     
                                 </div><span id="cinsiyetError" class="cinsiyetError" style="color: red;"></span></div>
                                 
-                            <div class="mt-5 text-center"><button class="btn btn-danger profile-button" type="button" onclick="ValidateKan();ValidateCinsiyet();validateDogumT();if(kanError == false && cinsiyetError == false && dateError == false){window.setTimeout(function(){location.href = 'Hastane Randevu/randevu kısmı/E-Randevu.html';}, 1);}">Profili Kaydet</button></div>
+                            <div class="mt-5 text-center"><button name="guncelle" class="btn btn-danger profile-button" type="submit">Profili Kaydet</button></div>
                         </div>
                     </div>
                     
@@ -160,6 +160,73 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
             </div>
             </div>
         </form>
+
+        <?php 
+
+            if(isset($_POST["guncelle"])){
+              // --------------------------------------------------------------------
+              function test_input($data){ 
+                  $data = trim($data);
+                  $data = stripcslashes($data);
+                  $data = htmlspecialchars($data);
+                  return $data;
+              }
+              // ---------------------------------------------------------------------
+
+              $servername = "localhost";
+              $username = "root";
+              $password = "";
+              $dbname = "hastaneveritabani";
+
+
+              //create connection 
+
+              $conn = mysqli_connect($servername,$username,$password,$dbname);
+              $new = mysqli_set_charset($conn, "utf8");
+              if($conn->connect_error){
+                  die("Bağlantı hatası: ".$conn->connect_error);
+              }
+
+              $hasta_adi =  $_SESSION["hasta_adi"];
+              $hasta_soyadi = $_SESSION["hasta_soyadi"];
+              $hasta_eposta = $_SESSION["hasta_eposta"]; 
+
+              $telefon = test_input($_POST["telefon"]);
+              $adres = test_input($_POST["adresBilgisi"]);
+              $dogumYeri = test_input($_POST["dogumYeri"]);
+              $dogumTarihi = test_input($_POST["dogumTarihi"]);
+              $kanGrubu = test_input($_POST["kanGrubu"]);
+              $cinsiyet = test_input($_POST["cinsiyet"]);
+              
+              // ------------------------------------------------------------------------------------
+              $sql = "UPDATE hastalar SET `hasta_cinsiyet` = '$cinsiyet', `hasta_telefon` = '$telefon', `hasta_dogum_tarihi` = '$dogumTarihi',
+              `hasta_dogum_yeri` = '$dogumYeri', `hasta_adress` = '$adres', `hasta_kan` = '$kanGrubu' WHERE `hasta_eposta` = '$hasta_eposta'";
+              
+              $result = mysqli_query($conn,$sql);
+              // ---------------------------------------------------------------------------------------
+
+              if($result){
+                echo("<div class='alert alert-success' role='alert'>
+                  Bilgileriniz Başarılı Bir Şekilde Güncellenmiştir.
+                </div>");
+                $_SESSION["hasta_adi"] =  $hasta_adi;
+                $_SESSION["hasta_soyadi"] = $hasta_soyadi;
+                $_SESSION["hasta_eposta"] = $hasta_eposta;
+                header("Refresh: 2; ../HastaneRandevu/randevu_kismi/E-Randevu.php");
+                ob_end_flush();
+              }
+              else{
+                echo("<div class='alert alert-danger' role='alert'>
+                Bilgileriniz Güncellenirken Bir Hata Meydana Geldi.
+                </div>");
+                header("Refresh: 2; userAccountInfo.php");
+              }
+                
+ 
+                
+            }
+        ?>
+
 
           <footer> 
             <div class="container-fluid" style="background-color: #2D2D2D;">
@@ -207,7 +274,8 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
             cinsiyetError = true,
             dateError = true;
 
-            function ValidateKan(){
+            function validate(){
+
                 if(form.kan.value == 0)
                 {
                     document.getElementById("kanError").innerHTML = "Lütfen Kan Bilginizi Seçiniz!";
@@ -219,12 +287,9 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                     document.getElementById("kanError").innerHTML = "";
                     kanError = false;
                 }
-            }
+            
 
-
-
-            function ValidateCinsiyet(){
-                if(form.cinsiyet.value == 0)
+                if(form.cinsiyet.value == "Sec")
                 {
                     document.getElementById("cinsiyetError").innerHTML = "Lütfen Cinsiyet Bilginizi Seçiniz!";
                     
@@ -235,19 +300,20 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                     document.getElementById("cinsiyetError").innerHTML = "";
                     cinsiyetError = false;
                 }
-            }
+      
+                let x = document.forms["form"]["date"].value;
+                if (x == "") {
+                  document.getElementById("dateError").innerHTML = "Lütfen Tarih Bilginizi Seçiniz!";
+                  dateError = true;
+                }
+                else{
+                  document.getElementById("dateError").innerHTML = "";
+                  dateError = false;
+                }
 
-            function validateDogumT()
-            {
-              let x = document.forms["form"]["date"].value;
-              if (x == "") {
-                document.getElementById("dateError").innerHTML = "Lütfen Tarih Bilginizi Seçiniz!";
-                dateError = true;
-              }
-              else{
-                document.getElementById("dateError").innerHTML = "";
-                dateError = false;
-              }
+                if(kanError == false && cinsiyetError == false && dateError == false){
+                  form.submit();
+                }
             }
 
 
