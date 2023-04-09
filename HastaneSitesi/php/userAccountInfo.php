@@ -205,7 +205,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
               $kanGrubu = test_input($_POST["kanGrubu"]);
               $cinsiyet = test_input($_POST["cinsiyet"]);
 
-      backward:
+      
               $kanError = true;
               $cinsiyetError = true;
               $dateError = true;

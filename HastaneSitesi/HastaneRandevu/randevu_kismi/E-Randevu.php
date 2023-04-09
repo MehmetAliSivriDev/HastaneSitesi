@@ -109,7 +109,7 @@
               <p class="profileName"><?php echo("$_SESSION[hasta_adi] $_SESSION[hasta_soyadi]"); ?></p>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="../../userAccountInfo.html">Hesap Ek Bilgilerini Güncelle</a>
+              <a class="dropdown-item" href="../../php/userAccountInfo.php">Hesap Ek Bilgilerini Güncelle</a>
               <a class="dropdown-item" href="../../userMessageBox.html">Mesajlar</a>
               <a class="dropdown-item" href="../../index.html">Çıkış Yap</a>
             </div>
@@ -163,7 +163,7 @@
 
             
 
-              <button  type="button" class="btn btn-primary " id="btn" onclick="ValidateHastane();if(hastError == false){window.setTimeout(function(){location.href = 'E-Randevu1.html';}, 1);}" style="padding: 8px 30px; font-size: 20px; margin-left: 40px; ">Devam</button>
+              <button  type="button" class="btn btn-primary " id="btn" onclick="ValidateHastane();if(hastError == false){window.setTimeout(function(){location.href = 'E-Randevu1.php';}, 1);}" style="padding: 8px 30px; font-size: 20px; margin-left: 40px; ">Devam</button>
 
             
           </form>
