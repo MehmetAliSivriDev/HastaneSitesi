@@ -1,5 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hastane Seçim</title>
+</head>
+<body>
+    
 <?php
-
+if(isset($_POST["Devam"])){
+    
+    function test_input($data){ 
+        $data = trim($data);
+        $data = stripcslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -43,5 +60,10 @@ if($mevcutkayit == false){
         header("Refresh: 2; ../E-Randevu.php");
     }
 }
+}
 
 ?>
+
+</body>
+</html>
+
