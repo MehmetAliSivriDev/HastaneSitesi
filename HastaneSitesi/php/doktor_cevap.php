@@ -115,7 +115,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
 
 <div class="container">
     <h2>Gelen Kutusu</h2>
-    <form method="POST" action="doktormesaj.php">
+    <form method="POST" action="">
 
 
         <label for="bölüm">Bölüm:</label>
@@ -166,448 +166,44 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
     </form>
     </div>
 
-
 <?php
 
 
-if (isset($_POST['submit'])) {
-  
-   
-    function test_input($data){ 
-        $data = trim($data);
-        $data = stripcslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-   
-
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "hastaneveritabani";
-
-
-  
-    $Bölüm = test_input($_POST["bölüm"]);
-    
-if($Bölüm=="üroloji"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='üroloji'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {        
-
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-        echo"<button type='submit'>Cevap Ver</button>";
-        echo"-------------------------------------------------------------------------------------------------------------<br>";
-
-    }
-          }else {"Mesajınız bulunmamaktadır!!! " ;}
-
-
-} else if($Bölüm=="BeslenmeVeDiyet"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='BeslenmeVeDiyet'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-    echo"-------------------------------------------------------------------------------------------------------------<br>";
-    }
-          }
-
-}
-else if($Bölüm=="RuhSağlığıVeHastalıkları"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='RuhSağlığıVeHastalıkları'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-        echo"-----------------------------------------------------------------";        }
-    
-          } else { "Mesajınız bulunmamaktadır!!! " ;}
-
-
-}else if($Bölüm=="KlinikPsikolog"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='KlinikPsikolog'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-        echo"-----------------------------------------------------------------";        }
-          } else { "Mesajınız bulunmamaktadır!!! " ;}
-
-
-}
-else if($Bölüm=="Algoloji"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='Algoloji'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-        echo"-----------------------------------------------------------------";        }
-          } else { "Mesajınız bulunmamaktadır!!! " ;}
-
-
-}
-
-else if($Bölüm=="KulakBurunBoğazHastalıkları"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='KulakBurunBoğazHastalıkları'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-        echo"-----------------------------------------------------------------";        }
-          } else { "Mesajınız bulunmamaktadır!!! " ;}
-
-
-}
-else if($Bölüm=="nöroloji"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='nöroloji'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-        echo"-----------------------------------------------------------------";        }
-          } else { "Mesajınız bulunmamaktadır!!! " ;}
-
-
-}
-else if($Bölüm=="BeyinVeSinirCerrahisi"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='BeyinVeSinirCerrahisi'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-        echo"-----------------------------------------------------------------";        }
-          } else { "Mesajınız bulunmamaktadır!!! " ;}
-
-
-} 
-else if($Bölüm=="GenelCerrahi"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='GenelCerrahi'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {
-
+    if (isset($_POST['submit'])) {
+      
+       
+        function test_input($data){ 
+            $data = trim($data);
+            $data = stripcslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
        
 
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-        echo"-----------------------------------------------------------------";        }
-          } else { "Mesajınız bulunmamaktadır!!! " ;}
-
-
-} 
-else if($Bölüm=="kardiyoloji"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='kardiyoloji'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-        echo"-----------------------------------------------------------------";        }
-          } else { "Mesajınız bulunmamaktadır!!! " ;}
-
-
-} 
-else if($Bölüm=="dahiliye"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='dahiliye'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-        echo"-----------------------------------------------------------------";        }
-          } else { "Mesajınız bulunmamaktadır!!! " ;}
-
-
-} 
-else if($Bölüm=="AcilServis"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='AcilServis'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-        echo"-----------------------------------------------------------------";        }
-          } else { "Mesajınız bulunmamaktadır!!! " ;}
-
-
-} 
-
-else if($Bölüm=="FizikTedaviVeRehabilitasyon"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='FizikTedaviVeRehabilitasyon'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-        echo"-----------------------------------------------------------------";        }
-          } else { "Mesajınız bulunmamaktadır!!! " ;}
-
-
-} 
-else if($Bölüm=="biorezonans"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='biorezonans'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-        echo"-----------------------------------------------------------------";        }
-          } else { "Mesajınız bulunmamaktadır!!! " ;}
-
-
-} 
-else if($Bölüm=="CocukSaglıgıVeHastalıkları"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='CocukSaglıgıVeHastalıkları'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-        echo"-----------------------------------------------------------------";        }
-          } else { "Mesajınız bulunmamaktadır!!! " ;}
-
-
-} 
-
-else if($Bölüm=="GozHastalıkları"){
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$new = mysqli_set_charset($conn, "utf8");
-if($conn->connect_error){
-    die("Bağlantı hatası: ".$conn->connect_error);
-} 
-
-
-$sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm,tarih from hastalar where bölüm='GozHastalıkları'";
-$result=$conn->query($sql);
-
-
-if($result ->num_rows >0 ){
-
-    while($row = $result ->fetch_assoc())
-    {
-
-
-        echo "  Ad ". "~ Soyad : ".$row["ad"]."  ".$row["soyad"].  "<br>"." Mesaj:  ".$row["ileti"]."  <br> "."  Bölüm :   ".$row["bölüm"]. "<br>"."   Konu:  ". $row["konu"] . "<br>"."Email : ".$row["email"] ."<br>"."  tel_no:  ". $row["tel_no"] . "<br>"."Tarih: ".$row["tarih"]."<br><br>";
-    echo"-----------------------------------------------------------------";
-
-    }
-          } else { "Mesajınız bulunmamaktadır!!! " ;}
-
-
-} 
-
-
-
-
-
-
-
-
-
- 
-/*    $conn = mysqli_connect($servername,$username,$password,$dbname);
-    $new = mysqli_set_charset($conn, "utf8");
-    if($conn->connect_error){
-        die("Bağlantı hatası: ".$conn->connect_error);
-    } 
-  
-   
-    $sql = "SELECT ad,soyad,email,tel_no,konu,ileti,bölüm from hastalar";
-
-    $result=$conn->query($sql);*/ 
-/* if($result ->num_rows >0 ){
-
-while($row = $result ->fetch_assoc())
-{
-echo "  ad:  ".$row["ad"] .  "  soyad : ".$row["soyad"]. "  Mesaj:  "." bölüm :   ".$row["bölüm"] .$row["ileti"]."  konu:  ". $row["konu"] ."<br>";
-
-}
-  }else {"sonuç yok " ;}*/  
-
-  
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "hastaneveritabani";
+        $conn = mysqli_connect($servername,$username,$password,$dbname);
+
+      
+        $Bölüm = test_input($_POST["bölüm"]);
         
-  /*    if(mysqli_num_rows($result) > 0  && $Bölüm === 'üroloji' ){
-            echo "<h3>Üroloji Bölümüne Gelen Mesajlar</h3>";
-            //buraya alert olarak aranacagınız yaz yada doktor mesajlaşması için bişiler  yap
-       
-  
-    while($row = mySQLi_fetch_array($result)){
-        echo("<div class='card'>
-        <h3>Hastanın : </h3>
-        <h4>Ad-Soyad: $row[1] - $row[2]</h4><br>
-        <p>Bölüm: $row[8]</p><br>
-        <p>Mesaj:$row[6]</p>
-        <p>konu: $row[5]</p><br>
-        <p>Email: $row[3]</p><br>
-        <p>Tarih: $row[7]</p><br>
-        <p>Telefon Numarası: $row[4]</p></div>");
-  }  }*/ 
+        $sql = "SELECT * from hasta_soru where poliklinik='$Bölüm'";
+        $result = mysqli_query($conn,$sql);
 
+        while($row = $result ->fetch_assoc())
+        {        
 
-}
+            echo("Hasta Eposta"."<br>".$row["hasta_eposta"]."<br>"."Poliklinik"."<br>".$row["poliklinik"]."<br>"."Hasta Soru:"."<br>".$row["soru"]);
+            echo"<button type='submit'>Cevap Ver</button>";
+            echo"-------------------------------------------------------------------------------------------------------------<br>";
 
+        }
+              }else {"Mesajınız bulunmamaktadır!!! " ;}
 
 ?>
+
        
 
 
