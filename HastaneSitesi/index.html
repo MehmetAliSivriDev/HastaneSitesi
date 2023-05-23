@@ -524,7 +524,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
             <div class="container-fluid">
                 <h1 style="text-align: center; text-shadow: green; font-size: 30px; font-weight: 700; margin: 30px;">UZMANLARIMIZA SORUN</h1>
                 <div class="resim">
-                    <form name="form" method="post" action="#" id="#" >
+                    <form name="form" method="post" action="php/hasta_soru_ilet.php" id="#" >
                         <div class="col col-sm-8 col-md-6 col-lg-4 rightcolumn" >
                             <div class="form-group my-4">
                                 <input type="email" class="form-control " name="email" id="email" placeholder="E-posta Adresiniz" >
@@ -555,7 +555,8 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                                 <textarea name="message" id="message" class="form-control " rows="6" placeholder="Mesajınız"></textarea>
                                 <span id="messageError"></span>
                             </div>
-                            <a class="btn btn-main btn-round-full" type="submit" onclick="ValidateMessage();ValidateEmail();ValidatePoliklinik();kontrol();" >GÖNDER</a>
+                            <input type="submit" placeholder="GÖNDER" class="btn btn-main btn-round-full" name="gonder">
+                            <!--<a class="btn btn-main btn-round-full" type="submit" onclick="ValidateMessage();ValidateEmail();ValidatePoliklinik();kontrol();" >GÖNDER</a> --> 
     
                         </div>
                     </form>
