@@ -127,7 +127,6 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
 
       while($row = mySQLi_fetch_array($result)){
 
-
         echo '<div class="container my-5">
         <div class="row message-wrapper rounded shadow mb-20">
             <div class="col-md-4 message-sideleft">
