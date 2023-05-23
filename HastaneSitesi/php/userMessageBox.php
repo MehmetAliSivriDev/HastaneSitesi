@@ -3,13 +3,13 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Hesap Bilgileri</title>
+    <title>Mesaj Kutusu</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../userMessageBox.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='../hnf.css'>
     <script src='main.js'></script>
-
-    <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
 integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -19,26 +19,13 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="../icofont/icofont.min.css">
-
-<style>
-    body{
-        background-image: url("https://st3.depositphotos.com/2065849/14683/i/450/depositphotos_146839819-stock-photo-blurred-hospital-hallway-unfocused-background.jpg");
-        background-repeat: no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    }
-
-</style>
-
 </head>
 <body>
-  <?php  ob_start(); session_start();?>
+  
+<?php  ob_start(); session_start();?>
 
-  <div class="preloader"></div>
-    
-        <header class="topbar">
+  
+  <header class="topbar">
             <div class="container">
               <div class="row">
                 <!-- social icon-->
@@ -104,118 +91,112 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                   <a class="dropdown-item" href="../Poliklinikler/CocukSaglıgıVeHastalıkları.html">Çocuk Sağlığı ve Hastalıkları</a>
                   <a class="dropdown-item" href="../Poliklinikler/GozHastalıkları.html">Göz Hastalıkları</a>    
               </li>
-            </ul>
-            
-          </div>  
-  
-      </nav>
+        </ul>
         
-       
-      
+      </div>  
 
-<div class="container">
-    <h2>Gelen Kutusu</h2>
-    <form method="POST" action="">
-
-
-        <label for="bölüm">Bölüm:</label>
-        <select name="bölüm"  id="bölüm">
-        <option value="#" ></option>
-            <option value="üroloji">Üroloji</option>
-            <option value="BeslenmeVeDiyet">Beslenme ve Diyet</option>
-
-            <option value="RuhSağlığıVeHastalıkları">RuhSağlığıVeHastalıkları</option>
-    
-            <option value="KlinikPsikolog">KlinikPsikolog</option>
-        
-            <option value="Algoloji">Algoloji</option>
-            
-            <option value="KulakBurunBoğazHastalıkları">KulakBurunBoğazHastalıkları</option>
-            
-            <option value="nöroloji">nöroloji</option>
-            
-            <option value="BeyinVeSinirCerrahisi">BeyinVeSinirCerrahisi</option>
-            
-            <option value="GenelCerrahi">GenelCerrahi</option>
-            
-            <option value="kardiyoloji">kardiyoloji</option>
-        
-            <option value="dahiliye">dahiliye</option>
-        
-            <option value="AcilServis">AcilServis</option>
-        
-            <option value="FizikTedaviVeRehabilitasyon">FizikTedaviVeRehabilitasyon</option>
-        
-            <option value="biorezonans">biorezonans</option>
-        
-            <option value="CocukSaglıgıVeHastalıkları">CocukSaglıgıVeHastalıkları</option>
-            
-            <option value="GozHastalıkları">GozHastalıkları</option>
-
-        </select>
-
-        <br><br>
-    <!--  <label >Konu:</label><br><br>
-        <input type="text" name="konu" placeholder="Hastanız ile görüşmek istediğiniz konu :">
-    <br><br>
-        <label>ileti:</label>
-        <br>
-        
-        <textarea name = "ileti" placeholder="Hastanıza iletmek istediğiniz mesaj"></textarea><br>-->
-        <input type="submit" name="submit" value="Listele">
-    </form>
+      <div class="profileImage">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="50" height="50" class="rounded-circle">
+              <p class="profileName"><?php echo("$_SESSION[hasta_adi] $_SESSION[hasta_soyadi]"); ?></p>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="userAccountInfo.php">Hesap Ek Bilgilerini Güncelle</a>
+              <a class="dropdown-item" href="../index.html">Çıkış Yap</a>
+            </div>
+          </li>   
+        </ul>
     </div>
 
-<?php
+  </nav>
+  <?php
 
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "hastaneveritabani";
+    $conn = mysqli_connect($servername,$username,$password,$dbname);
 
-    if (isset($_POST['submit'])) {
-      
-       
-        function test_input($data){ 
-            $data = trim($data);
-            $data = stripcslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
-        }
-       
-
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "hastaneveritabani";
-        $conn = mysqli_connect($servername,$username,$password,$dbname);
-
-      
-        $Bölüm = test_input($_POST["bölüm"]);
-        
-        $sql = "SELECT * from hasta_soru where poliklinik='$Bölüm'";
-        $result = mysqli_query($conn,$sql);
-
-        while($row = $result ->fetch_assoc())
-        {        
-
-            echo("Hasta Eposta:".$row["hasta_eposta"]."<br>"."Poliklinik:".$row["poliklinik"]."<br>"."Hasta Soru:"."<br>".$row["soru"]);
-            
-            echo "<form method = 'POST' action='cevabi_ilet.php'>";
-            echo "<input type='hidden' name='hasta_eposta' value='" . $row["hasta_eposta"] . "'>";
-            echo "<input type='hidden' name='hasta_soru' value='" . $row["soru"] . "'>";
-            echo "<input type='hidden' name='poliklinik' value='" . $row["poliklinik"] . "'>";
-            echo "<textarea name='cevap' placeholder='Cevabınızı yazın'></textarea><br>";
-            echo "<input type='submit' name='cevap_submit' value='Cevap Gönder'>";
-            echo "</form>";
+    $hasta_eposta = $_SESSION["hasta_eposta"];
+    $sql = "SELECT * from doktor_cevap where hasta_eposta = '$hasta_eposta'";
+    $result = mysqli_query($conn,$sql);
     
-            echo "-------------------------------------------------------------------------------------<br>";
+    if(mysqli_num_rows($result) > 0){
 
-        }
-              }else {"Mesajınız bulunmamaktadır!!! " ;}
-
-?>
-
-       
+      while($row = mySQLi_fetch_array($result)){
 
 
-          <footer> 
+        echo '<div class="container my-5">
+        <div class="row message-wrapper rounded shadow mb-20">
+            <div class="col-md-4 message-sideleft">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="pull-left">
+                            <h3 class="panel-title">Mesajlar</h3>
+                        </div>
+                        
+                        <div class="clearfix"></div>
+                    </div><!-- /.panel-heading -->
+                    <div class="panel-body no-padding">
+                        <div class="list-group no-margin list-message">
+                            <a href="#" class="list-group-item">
+                                <h4 class="list-group-item-heading"> <small></small></h4>
+                                <p class="list-group-item-text">
+                                    Poliklinik Adı : <strong>'.$row["poliklinik"].'</strong>
+                                </p>
+                                <span class="label label-success pull-right"></span>
+                                <div class="clearfix"></div>
+                            </a>
+                        </div><!-- /.list-group -->
+                    </div><!-- /.panel-body -->
+                </div><!-- /.panel -->
+            </div><!-- /.message-sideleft -->
+            <div class="col-md-8 message-sideright">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="media">
+                            
+                            <div class="media-body">
+                                <h4 class="media-heading">'.$row["poliklinik"].'</h4>
+                            </div>
+                        </div>
+                    </div><!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <hr style="border: 1px solid black;"></li>
+                        <p class="lead">
+                                  Hastanın Sorusu: '.$row["hasta_soru"].'
+                              </p>
+                              <hr style="border: 1px solid black;"></li>
+                              <p>
+                                Doktorumuzun Cevabı: '.$row["cevap"].'
+                              </p>
+                        <hr style="border: 1px solid black;"></li>
+                        <br>
+                        <p>
+                            Teşekkürler! <br>
+                            Özel Kırklareli Hastanesi
+                        </p>
+                    </div><!-- /.panel-body -->
+                </div><!-- /.panel -->
+                
+            </div><!-- /.message-sideright -->
+        </div>
+        </div>';
+      
+      }
+      
+
+
+    }
+    
+
+
+  ?>
+    
+
+<footer> 
             <div class="container-fluid" style="background-color: #2D2D2D;">
               <div class="row">
                 <div class="col">
@@ -261,8 +242,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
     <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-<script src="../lr.js"></script>
-<script src="../userAccountInfo.js"></script>
 <script src="../preloader.js"></script>
+    
 </body>
 </html>

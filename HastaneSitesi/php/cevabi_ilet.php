@@ -43,18 +43,20 @@
 
             $hastaemail= test_input($_POST["hasta_eposta"]);
             $doktorcevap = test_input($_POST["cevap"]);
+            $hasta_soru = test_input($_POST["hasta_soru"]);
+            $poliklinik = test_input($_POST["poliklinik"]);
             $doktorEmail = $_SESSION["doktor_eposta"];
             $doktorId = $_SESSION["doktor_id"];
          
             // ------------------------------------------------------------------------------------
-            $sql = "INSERT INTO doktor_cevap (`doktor_id`,`cevap`,`hasta_eposta`) VALUES
-                (?,?,?)";
+            $sql = "INSERT INTO doktor_cevap (`doktor_id`,`cevap`,`hasta_eposta`,`hasta_soru`,poliklinik) VALUES
+                (?,?,?,?,?)";
             
             // ifademiniz hazırlıyoruz. parse edilir ve DB sunucu saklanır. Tekrar tekrar kullanılabilir
             
             $stmt = mysqli_prepare($conn,$sql);
             // sorgumuzda çalıştırılacak parametreleri gönderiyoruz  is -> i = int ve s = string
-            mysqli_stmt_bind_param($stmt, "iss", $doktorId ,$doktorcevap,$hastaemail);
+            mysqli_stmt_bind_param($stmt, "issss", $doktorId ,$doktorcevap,$hastaemail,$hasta_soru,$poliklinik);
             // sorgu çalıştır
             mysqli_stmt_execute($stmt);
 
