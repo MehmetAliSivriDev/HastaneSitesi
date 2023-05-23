@@ -56,7 +56,7 @@
            
             $result = mysqli_stmt_get_result($stmt);
 
-            // ----------b--------------------------------------------------------burya doktor siteden mesaj ile geri donsun yada arasın hastasını
+            // ------------------------------------------------------------------burya doktor siteden mesaj ile geri donsun yada arasın hastasını
             if($result == false){
              
                     //buraya alert olarak aranacagınız yaz yada doktor mesajlaşması için bişiler  yap
