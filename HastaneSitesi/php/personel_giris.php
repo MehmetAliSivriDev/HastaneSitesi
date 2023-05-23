@@ -129,6 +129,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                 $doktorSifre = $row["doktor_sifre"];
                 $doktorAd = $row["doktor_adi"];
                 $doktorSoyad = $row["doktor_soyadi"];
+                $doktorId = $row["doktor_id"];
                 
                 
                 if($email == $doktorEmail && $sifre == $doktorSifre){
@@ -138,9 +139,10 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
 
                     $dogrulama = true;
 
-                    $_SESSION["doktor_eposta"] = $email;
+                    $_SESSION["doktor_eposta"] = $doktorEmail;
                     $_SESSION["doktor_adi"] = $doktorAd;
                     $_SESSION["doktor_soyadi"] = $doktorSoyad;
+                    $_SESSION["doktor_id"] = $doktorId;
 
                     header("Refresh: 2; doktor_cevap.php");
 

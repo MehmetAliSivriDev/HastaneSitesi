@@ -195,9 +195,15 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
         while($row = $result ->fetch_assoc())
         {        
 
-            echo("Hasta Eposta"."<br>".$row["hasta_eposta"]."<br>"."Poliklinik"."<br>".$row["poliklinik"]."<br>"."Hasta Soru:"."<br>".$row["soru"]);
-            echo"<button type='submit'>Cevap Ver</button>";
-            echo"-------------------------------------------------------------------------------------------------------------<br>";
+            echo("Hasta Eposta:".$row["hasta_eposta"]."<br>"."Poliklinik:".$row["poliklinik"]."<br>"."Hasta Soru:"."<br>".$row["soru"]);
+            
+            echo "<form method = 'POST' action='cevabi_ilet.php'>";
+            echo "<input type='hidden' name='hasta_eposta' value='" . $row["hasta_eposta"] . "'><br><br>";
+            echo "<textarea name='cevap' placeholder='Cevabınızı yazın'></textarea><br>";
+            echo "<input type='submit' name='cevap_submit' value='Cevap Gönder'>";
+            echo "</form>";
+    
+            echo "-------------------------------------------------------------------------------------<br>";
 
         }
               }else {"Mesajınız bulunmamaktadır!!! " ;}
