@@ -168,7 +168,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
         <br>
         
         <textarea name = "ileti" placeholder="Hastanıza iletmek istediğiniz mesaj"></textarea><br>-->
-        <input type="submit" name="submit" value="Listele">
+        <input type="submit" name="submit" class ="Listele" value="Listele">
     </form>
     </div>
 
