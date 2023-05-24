@@ -16,6 +16,11 @@
     margin-right: 10px;
     float: initial;
   } 
+  .gelenkutusu label::before {
+    content: "Bölüm:";
+    font-weight: bold;
+    margin-right: 5px;
+  }
   
   .gelenkutusu form {
     display: flex;
@@ -35,6 +40,8 @@
     border-radius: 4px;
     font-size: 14px;
     margin-bottom: 10px;
+    border: 3px solid rgb(106, 11, 11); /* Kenar rengi kırmızı olarak ayarlandı */
+    border-radius: 4px;
   }
   
   .gelenkutusu select option {
@@ -44,7 +51,7 @@
  .Listele {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #9b0000;
+    background-color: #009936;
     color: #FFFFFF;
     border-radius: 4px;
     border: none;
@@ -56,7 +63,7 @@
   }
   
   .Listele:hover {
-    background-color: #009936;
+    background-color:#9b0000 ;
   }
   
   .Listele:active {
