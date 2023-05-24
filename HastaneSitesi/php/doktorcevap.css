@@ -1,0 +1,43 @@
+.gelenkutusu {
+    text-align: center;
+    background-color: white;
+    height: 450px;
+  }
+
+  .gelenkutusu h2::before {
+    content: "\1F4AC"; /* Mesaj emojisi unicode kodu */
+    font-size: 30px;
+    margin-right: 10px;
+    float: initial;
+  }
+  .gelenkutusu h2::after {
+    content: "\1F4AC";      /* Mesaj emojisi unicode kodu */
+    font-size: 30px;
+    margin-right: 10px;
+    float: initial;
+  } 
+  
+  .gelenkutusu form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .gelenkutusu label {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .gelenkutusu select {
+    width: 250px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .gelenkutusu select option {
+    font-size: 14px;
+  }
+ 
