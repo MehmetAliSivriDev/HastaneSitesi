@@ -140,88 +140,95 @@
                                 <h2 class="mb-2 title-color">Hastane Randevusu</h2>
                                 <p class="mb-4">Randevu alma işleminde aşağıda poliklinik ve doktor gibi bilgileri doldurarak randevu alma işlemi bir sonraki sayfaya aktarılacaktır. </p>
                             </div>
-                            <form id="#" class="appoinment-form " name="form" method="post" action="#">
-                                    <div class="row ">
-                                        <div class="col-lg-12 pt-2">
-                                            <div class="form-group mr-2 mb-3">
-                                                <select class="form-select p-3 " name="poliForm"   id="poliklinikId" onchange="doktorGoster()" >
-                                                    <option value="0">Poliklinik Seçin</option>
-                                                    <option value="1">Üroloji</option>
-                                                    <option value="2">Beslenme ve Diyet</option>
-                                                    <option value="3">Ruh Sağlığı ve Hastalıkları</option>
-                                                    <option value="4">Klinik Psikolog</option>
-                                                    <option value="5">Algoloji</option>
-                                                    <option value="6">Kulak Burun Boğaz Hastalıkları</option>
-                                                    <option value="7">Nöroloji</option>
-                                                    <option value="8">Beyin ve Sinir Cerrahisi</option>
-                                                    <option value="9">Genel Cerrahi</option>
-                                                    <option value="10">Kardiyoloji</option>
-                                                    <option value="11">Dahiliye</option>
-                                                    <option value="12">Fizik Tedavi ve Rehabilitasyon</option>
-                                                    <option value="13">Biorezonans</option>
-                                                    <option value="14">Çocuk Sağlığı ve Hastalıkları</option>
-                                                    <option value="15">Göz Hastalıkları</option>
-                                                </select>
-                                                <span id="poliError"></span>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-lg-12 pt-3">
-                                            <div class="form-group mr-2 mb-3 " >
-                                                <select class="form-select p-3" name="dokForm"  id="doktorlarId">
-                                                    <option value="0" >Doktorlar Seçin</option>
-                                                </select>
-                                                <span id="dokError"></span>
+                            <form id="#" class="appoinment-form" name="form" method="post" action="#">
+                              <div class="row">
+                                  <div class="col-lg-12 pt-2">
+                                      <div class="form-group mr-2 mb-3">
+                                          <select class="form-select p-3" name="poliForm" id="poliklinikId" onchange="doktorGoster()">
+                                              <option value="0">Poliklinik Seçin</option>
+                                              <option value="1">Üroloji</option>
+                                              <option value="2">Beslenme ve Diyet</option>
+                                              <option value="3">Ruh Sağlığı ve Hastalıkları</option>
+                                              <option value="4">Klinik Psikolog</option>
+                                              <option value="5">Algoloji</option>
+                                              <option value="6">Kulak Burun Boğaz Hastalıkları</option>
+                                              <option value="7">Nöroloji</option>
+                                              <option value="8">Beyin ve Sinir Cerrahisi</option>
+                                              <option value="9">Genel Cerrahi</option>
+                                              <option value="10">Kardiyoloji</option>
+                                              <option value="11">Dahiliye</option>
+                                              <option value="12">Fizik Tedavi ve Rehabilitasyon</option>
+                                              <option value="13">Biorezonans</option>
+                                              <option value="14">Çocuk Sağlığı ve Hastalıkları</option>
+                                              <option value="15">Göz Hastalıkları</option>
+                                          </select>
+                                          <span id="poliError"></span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row mb-3">
+                                  <div class="col-lg-12 pt-3">
+                                      <div class="form-group mr-2 mb-3">
+                                          <select class="form-select p-3" name="dokForm" id="doktorlarId">
+                                              <option value="0">Doktorlar Seçin</option>
+                                              <option value= "<?php $_SESSION["doktor_id"]  ?>"><?php $_SESSION["doktor_ad"]  ?></option>
+                                          </select>
+                                          <span id="dokError"></span>
+                                      </div>
+                                  </div>
+                              </div>
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-            
-                                    <a class="btn btn-main btn-round-full " type="submit" onclick="  ValidatePoliklinik();ValidateDoktor();if(poliError == false && dokError == false){window.setTimeout(function(){location.href = 'E-Randevu2.php';}, 1);}" >Devam<i class="icofont-simple-right ml-2 "></i></a>
-                                    
-                                  </form>
-                                
-                                <?php
+                              <button class="btn btn-main btn-round-full" type="submit" name="submit">Devam<i class="icofont-simple-right ml-2"></i></button>
 
+                          </form>
 
-                                    if (isset($_POST['submit'])) {
-                                      
-                                      
-                                        function test_input($data){ 
-                                            $data = trim($data);
-                                            $data = stripcslashes($data);
-                                            $data = htmlspecialchars($data);
-                                            return $data;
-                                        }
-                                      
+                          <?php
+                          if (isset($_POST['submit'])) {
+                              function test_input($data)
+                              {
+                                  $data = trim($data);
+                                  $data = stripcslashes($data);
+                                  $data = htmlspecialchars($data);
+                                  return $data;
+                              }
 
-                                        $servername = "localhost";
-                                        $username = "root";
-                                        $password = "";
-                                        $dbname = "hastaneveritabani";
-                                        $conn = mysqli_connect($servername,$username,$password,$dbname);
+                              $servername = "localhost";
+                              $username = "root";
+                              $password = "";
+                              $dbname = "hastaneveritabani";
+                              $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-                                      
-                                        $poliform = test_input($_POST["poliform"]);
+                              $poliform = test_input($_POST["poliForm"]);
+                              $hastane_id = $_SESSION["hastane_id"];
 
-                                        $hastane_id = $_SESSION["hastane_id"];
+                              $sql = "SELECT * from poliklinikler WHERE poliklinik_id = '$poliform' AND hastane_id = '$hastane_id'";
+                              $poliklinik_result = mysqli_query($conn, $sql);
 
-                                        $sql = "SELECT * from doktor where polikilinik_id='$poliform' and hastane_id =  '$hastane_id'";
+                              if (mysqli_num_rows($poliklinik_result) > 0) {
+                                $poliklinik_row = mysqli_fetch_assoc($poliklinik_result);
+                                $poliklinik_id = $poliklinik_row["poliklinik_id"];
+                        
+                                $sql = "SELECT * from doktor WHERE poliklinik_id = '$poliklinik_id' AND hastane_id = '$hastane_id'";
+                                $doktor_result = mysqli_query($conn, $sql);
+                        
+                                if (mysqli_num_rows($doktor_result) > 0) {
+                                    while ($doktor_row = mysqli_fetch_assoc($doktor_result)) {
+                                        // Doktor verilerini kullanabilirsiniz
+                                        $doktor_id = $doktor_row["doktor_id"];
+                                        $doktor_ad = $doktor_row["doktor_ad"];
                                         
-                                        $result = mysqli_query($conn,$sql);
-
-                                        while($row = $result ->fetch_assoc())
-                                        {        
-
-                                            
-                                        }
-                                              }else {"Mesajınız bulunmamaktadır!!! " ;}
-
-                                ?>
-
+                                        // ...
+                                    }
+                                    $_SESSION["doktor_id"] = $doktor_id;
+                                        $_SESSION["doktor_ad"] = $doktor_ad;
+                                } else {
+                                    echo "Seçilen poliklinik için doktor bulunamadı.";
+                                }
+                            } else {
+                                echo "Seçilen poliklinik bulunamadı.";
+                            }
+                        }
+                        ?>
                         </div>
                     </div>
                 </div>
