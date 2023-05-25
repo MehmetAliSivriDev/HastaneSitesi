@@ -122,6 +122,8 @@
   
     </nav>
 
+    <?php echo($_SESSION["doktor"]);?>
+
     <div class="container">
         <section class="section appoinment">
             <div class="container">
@@ -133,208 +135,76 @@
                             <p class="mb-4">Randevu alma işleminde aşağıda belirtilen tarih, randevu saati ve kısa mesaj gibi bilgileri doldurarak randevu alma işlemi tamamlanmış olacaktır. </p>
                                
                           </div>
-                          
                             
-                            
-                          
-<!--
-  // Güncellenecek tarih
-$tarih = "13 Nisan 2023";
-
-// Güncellenecek saatler
-$saatler = array("10:00", "10:30", "11:00", "11:30");
-
-// Tarih için saatleri güncelle
-foreach ($saatler as $saat) {
-    $sql = "UPDATE tarih SET saat='$saat' WHERE tarih='$tarih'";
-    if (mysqli_query($baglanti, $sql)) {
-        echo "Tarih için saat güncellendi: $saat\n";
-    } else {
-        echo "Hata: " . mysqli_error($baglanti);
-    }
-}
--->
-                            
-                              <form id="#" class="appoinment-form " name="form" method="post" action="#">
+                              <form id="#" class="appoinment-form " name="form" method="post" action="E-Randevu_kayit.php">
                                     <div class="row" >
                                         <div class="uygun-saatler">
+                                          <?php 
 
-                                          <div class="col-lg-6 ">
-                                            <div class="item" data-date="11 Nisan 2023">
-                                              <div class="tarih p-2 ">11 Nisan 2023</div>
-                                              <div class="saatler">
-                                                <button type="" class="saat"> 09:30</button>
-                                                <button type="" class="saat"> 10:00</button>
-                                                <button type="" class="saat"> 10:30</button>
-                                                <button type="" class="saat"> 11:00</button>
-                                                <button type="" class="saat"> 11:30</button>
-                                                <button type="" class="saat"> 12:00</button>
-                                                <button type="" class="saat"> 12:30</button>
-                                                <button type="" class="saat"> 13:00</button>
-                                                <button type="" class="saat"> 13:30</button>
-                                                <button type="" class="saat"> 14:00</button>
-                                                <button type="" class="saat"> 14:30</button>
-                                                <button type="" class="saat"> 15:00</button>
-                                                <button type="" class="saat"> 15:30</button>
-                                                <button type="" class="saat"> 16:00</button>
-                                                <button type="" class="saat"> 16:30</button>
-                                              </div>
-                                            </div>
-                                          </div>
+                                              function test_input($data){ 
+                                                $data = trim($data);
+                                                $data = stripcslashes($data);
+                                                $data = htmlspecialchars($data);
+                                                return $data;
+                                              }
 
-                                          <div class=" col-lg-6" >
-                                            <div class="item" data-date="12 Nisan 2023">
-                                              <div class="tarih p-2">12 Nisan 2023</div>
-                                              <div class="saatler">
-                                                <button type="" class="saat"> 09:30</button>
-                                                <button type="" class="saat"> 10:00</button>
-                                                <button type="" class="saat"> 10:30</button>
-                                                <button type="" class="saat"> 11:00</button>
-                                                <button type="" class="saat"> 11:30</button>
-                                                <button type="" class="saat"> 12:00</button>
-                                                <button type="" class="saat"> 12:30</button>
-                                                <button type="" class="saat"> 13:00</button>
-                                                <button type="" class="saat"> 13:30</button>
-                                                <button type="" class="saat"> 14:00</button>
-                                                <button type="" class="saat"> 14:30</button>
-                                                <button type="" class="saat"> 15:00</button>
-                                                <button type="" class="saat"> 15:30</button>
-                                                <button type="" class="saat"> 16:00</button>
-                                                <button type="" class="saat"> 16:30</button>
-                                              </div>
-                                            </div>
-                                          </div>
 
-                                          <div class="col-lg-6">
-                                            <div class="item" data-date="13 Nisan 2023">
-                                              <div class="tarih p-2">13 Nisan 2023</div>
-                                              <div class="saatler">
-                                                <button type="" class="saat"> 09:30</button>
-                                                <button type="" class="saat"> 10:00</button>
-                                                <button type="" class="saat"> 10:30</button>
-                                                <button type="" class="saat"> 11:00</button>
-                                                <button type="" class="saat"> 11:30</button>
-                                                <button type="" class="saat"> 12:00</button>
-                                                <button type="" class="saat"> 12:30</button>
-                                                <button type="" class="saat"> 13:00</button>
-                                                <button type="" class="saat"> 13:30</button>
-                                                <button type="" class="saat"> 14:00</button>
-                                                <button type="" class="saat"> 14:30</button>
-                                                <button type="" class="saat"> 15:00</button>
-                                                <button type="" class="saat"> 15:30</button>
-                                                <button type="" class="saat"> 16:00</button>
-                                                <button type="" class="saat"> 16:30</button>
-                                              </div>
-                                            </div>
-                                          </div>
+                                              $servername = "localhost";
+                                              $username = "root";
+                                              $password = "";
+                                              $dbname = "hastaneveritabani";
+                                              $conn = mysqli_connect($servername,$username,$password,$dbname);
 
-                                          <div class=" col-lg-6">
-                                            <div class="item" data-date="14 Nisan 2023">
-                                              <div class="tarih p-2">14 Nisan 2023</div>
-                                              <div class="saatler">
-                                                <button type="" class="saat"> 09:30</button>
-                                                <button type="" class="saat"> 10:00</button>
-                                                <button type="" class="saat"> 10:30</button>
-                                                <button type="" class="saat"> 11:00</button>
-                                                <button type="" class="saat"> 11:30</button>
-                                                <button type="" class="saat"> 12:00</button>
-                                                <button type="" class="saat"> 12:30</button>
-                                                <button type="" class="saat"> 13:00</button>
-                                                <button type="" class="saat"> 13:30</button>
-                                                <button type="" class="saat"> 14:00</button>
-                                                <button type="" class="saat"> 14:30</button>
-                                                <button type="" class="saat"> 15:00</button>
-                                                <button type="" class="saat"> 15:30</button>
-                                                <button type="" class="saat"> 16:00</button>
-                                                <button type="" class="saat"> 16:30</button>
-                                              </div>
-                                            </div>
-                                          </div>
 
-                                          <div class="col-lg-6">
-                                            <div class="item" data-date="15 Nisan 2023">
-                                              <div class="tarih p-2">15 Nisan 2023</div>
-                                              <div class="saatler">
-                                                <button type="" class="saat"> 09:30</button>
-                                                <button type="" class="saat"> 10:00</button>
-                                                <button type="" class="saat"> 10:30</button>
-                                                <button type="" class="saat"> 11:00</button>
-                                                <button type="" class="saat"> 11:30</button>
-                                                <button type="" class="saat"> 12:00</button>
-                                                <button type="" class="saat"> 12:30</button>
-                                                <button type="" class="saat"> 13:00</button>
-                                                <button type="" class="saat"> 13:30</button>
-                                                <button type="" class="saat"> 14:00</button>
-                                                <button type="" class="saat"> 14:30</button>
-                                                <button type="" class="saat"> 15:00</button>
-                                                <button type="" class="saat"> 15:30</button>
-                                                <button type="" class="saat"> 16:00</button>
-                                                <button type="" class="saat"> 16:30</button>
-                                              </div>
-                                            </div>
-                                          </div>
+                                              $doktor_id = $_SESSION["doktor"];
 
-                                          <div class="col-lg-6">
-                                            <div class="item" data-date="16 Nisan 2023">
-                                              <div class="tarih p-2">16 Nisan 2023</div>
-                                              <div class="saatler">
-                                                <button type="" class="saat"> 09:30</button>
-                                                <button type="" class="saat"> 10:00</button>
-                                                <button type="" class="saat"> 10:30</button>
-                                                <button type="" class="saat"> 11:00</button>
-                                                <button type="" class="saat"> 11:30</button>
-                                                <button type="" class="saat"> 12:00</button>
-                                                <button type="" class="saat"> 12:30</button>
-                                                <button type="" class="saat"> 13:00</button>
-                                                <button type="" class="saat"> 13:30</button>
-                                                <button type="" class="saat"> 14:00</button>
-                                                <button type="" class="saat"> 14:30</button>
-                                                <button type="" class="saat"> 15:00</button>
-                                                <button type="" class="saat"> 15:30</button>
-                                                <button type="" class="saat"> 16:00</button>
-                                                <button type="" class="saat"> 16:30</button>
-                                              </div>
-                                            </div>
-                                          </div>
+                                              $sql = "SELECT DISTINCT calisma_tarihi from calisma_saati where doktor_id='$doktor_id'";
 
-                                          <div class="col-lg-6">
-                                            <div class="item" data-date="17 Nisan 2023">
-                                              <div class="tarih p-2">17 Nisan 2023</div>
-                                              <div class="saatler">
-                                                <button type="" class="saat"> 09:30</button>
-                                                <button type="" class="saat"> 10:00</button>
-                                                <button type="" class="saat"> 10:30</button>
-                                                <button type="" class="saat"> 11:00</button>
-                                                <button type="" class="saat"> 11:30</button>
-                                                <button type="" class="saat"> 12:00</button>
-                                                <button type="" class="saat"> 12:30</button>
-                                                <button type="" class="saat"> 13:00</button>
-                                                <button type="" class="saat"> 13:30</button>
-                                                <button type="" class="saat"> 14:00</button>
-                                                <button type="" class="saat"> 14:30</button>
-                                                <button type="" class="saat"> 15:00</button>
-                                                <button type="" class="saat"> 15:30</button>
-                                                <button type="" class="saat"> 16:00</button>
-                                                <button type="" class="saat"> 16:30</button>
-                                              </div>
-                                            </div>
-                                          </div>
-                                    </div>
+                                              $result = mysqli_query($conn,$sql);
+
+                                              while($row = $result ->fetch_assoc())
+                                              {        
+                                                $tarih = $row["calisma_tarihi"];
+
+                                                //echo($tarih."<br>");
+                                                echo" <div class='col-lg-6 '>
+                                                <div class='item' data-date='11 Nisan 2023'>
+                                                  <div class='tarih p-2 '>$tarih</div>
+                                                  <div class='saatler'>
+                                                  <input value='$tarih' type='hidden' name='randevutarih'>
+                        
+                                                  ";
+                                                  
+                                                $sql2 = "SELECT * from calisma_saati where doktor_id='$doktor_id' and calisma_tarihi ='$tarih'";
+
+                                                $result2 = mysqli_query($conn,$sql2);
+
+                                                while($row2 = $result2 ->fetch_assoc())
+                                                { 
+                                                  $saat = $row2["calisma_saati"];
+                                                  $doluMu = $row2["doluMu"];
+                                                  if($row2["doluMu"] == 0){
+                                                    echo"<input value='$saat' name='saatGonder'  type='submit' class='saat' disabled>";
+                                                  }
+                                                  else
+                                                  {
+                                                    echo"<input value='$saat' name='saatGonder'  type='submit' class='saat'>";
+                                                  }
+                                                  
+                                                    
+                                                }
+                                                echo"</div>
+                                                </div>
+                                              </div>";
+                                              }
+
+
+                                          ?>
+
+                                         
                                     
-                                    <div class="float-left">
-                                      <div class="col-lg-8 m-5 ">
-                                        <div class="form-group-2 mb-4 mr-2 mb-3 ">
-                                          <h5>Bir Mesaj İletmek İstermisiniz?</h5>
-                                          <textarea name="message" id="message" class="form-control " rows="6" placeholder="Mesajınızı buraya girebilirsiniz..."></textarea>
-                                          <span class="error"></span>
-                                        </div>
-                                      </div>
-                                    </div>
                                 
-                                      <div class="col-lg-3 float-end ">
-                                        <a class="btn btn-main btn-round-full " type="submit" onclick=" ValidateTime(); ValidateDate(); kontrol();" >Randevu Al <i class="icofont-simple-right ml-2  "></i></a>
 
-                                      </div>
                                     </div>
                                   </form>
                         </div>
@@ -390,62 +260,7 @@ integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0
 <script src = "HastaneRandevu.js"></script>
     <script src="Bootstrap/bootstrap-5.2.3-dist/bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
 
-
-    <script>
-        
-        var dateError = true,
-        timeError = true
-        
-        
-       
-        
-        
-        function ValidateTime(){
-
-            if(form.timeForm.value == 0)
-            {
-                document.getElementById("timeError").innerHTML = "Lütfen Bir randevu saati Seçin...";
-                timeError = true;
-            
-            }
-            else
-            {
-                document.getElementById("timeError").innerHTML = "";
-                timeError = false;
-            }
-        }
-
-        function ValidateDate(){
-            let x = document.forms["form"]["date"].value;
-            if (x == "") {
-                document.getElementById("dateError").innerHTML = "Lütfen Bir tarih Seçin...";
-                dateError = true;
-            }
-            else{
-                document.getElementById("dateError").innerHTML = "";
-                dateError = false;
-            }
-
-        }
-
-
-    function kontrol(){
-
-        if (dateError == false && poliError == false && dokError == false && timeError == false) {
-        
-            alert("Randevu talebiniz başarıyla alınmıştır...");
-        }
-    
-    }   
-
-    
-    
-    </script>
-    
-
-
-
-
+  
 
     <script src="../../preloader.js"></script>
     <script src="Bootstrap/bootstrap-5.2.3-dist/bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>

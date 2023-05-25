@@ -28,7 +28,7 @@
 
 </head>
 <body>
-<?php session_start();?>
+<?php ob_start(); session_start();?>
 
 
   <div class="preloader"></div>
@@ -140,7 +140,7 @@
                                 <h2 class="mb-2 title-color">Doktor Seçimi</h2>
                                 <p class="mb-4">Hastanemizin sahip olduğu işinde tecrübeli ve kaliteli doktorlarımızdan randevu almak istediğinizi seçiniz. </p>
                             </div>
-                            <form id="#" class="appoinment-form " name="form" method="post" action="#">
+                            <form id="#" class="appoinment-form " name="form" method="post" action="">
                                     <div class="row mb-3">
                                         <div class="col-lg-12 pt-3">
                                             <div class="form-group mr-2 mb-3 " >
@@ -185,9 +185,24 @@
                                     </div>
                                     
             
-                                    <a class="btn btn-main btn-round-full " type="submit" >Devam<i class="icofont-simple-right ml-2 "></i></a>
+                                    <button  type="submit" name="doktorsec" class="btn btn-primary "  id="btn"  style="padding: 8px 30px; font-size: 20px; margin-left: 40px; ">Devam</button>
                                     
                                   </form>
+
+                                  <?php
+
+
+                                        if (isset($_POST['doktorsec'])) {
+                                          
+                                          $doktor=$_POST['dokForm'];
+                                          $_SESSION["doktor"] = $doktor;
+
+                                          header("Refresh: 0.5; E-Randevu2.php");
+                                        }
+                                        
+                                        
+                                  ?>
+  
                                 
                                 
 
