@@ -122,6 +122,8 @@
   
     </nav>
 
+    <?php echo("asdfsadfsdasdfasdfasdfasdfasdfdas".$_SESSION["polikilinik_id"]); ?>
+
     <div class="container">
         <section class="section appoinment">
             <div class="container">
@@ -137,41 +139,51 @@
                     <div class="col-lg-6 col-md-10 pt-1">
                         <div class="appoinment-wrap mt-5 mt-lg-0">
                             <div class="col">
-                                <h2 class="mb-2 title-color">Poliklinik Seçimi</h2>
-                                <p class="mb-4">Rahatsızlığınız bulunduğu poliklinik seçerek size daha doğru hizmet vermemize yardımcı olun.</p>
+                                <h2 class="mb-2 title-color">Doktor Seçimi</h2>
+                                <p class="mb-4">Hastanemizin sahip olduğu işinde tecrübeli ve kaliteli doktorlarımızdan randevu almak istediğinizi seçiniz. </p>
                             </div>
                             <form id="#" class="appoinment-form " name="form" method="post" action="#">
-                                    <div class="row ">
-                                        <div class="col-lg-12 pt-2">
-                                            <div class="form-group mr-2 mb-3">
-                                                <select class="form-select p-3 " name="poliForm"   id="poliklinikId" onchange="doktorGoster()" >
-                                                    <option value="0">Poliklinik Seçin</option>
-                                                    <option value="1">Üroloji</option>
-                                                    <option value="2">Beslenme ve Diyet</option>
-                                                    <option value="3">Ruh Sağlığı ve Hastalıkları</option>
-                                                    <option value="4">Klinik Psikolog</option>
-                                                    <option value="5">Algoloji</option>
-                                                    <option value="6">Kulak Burun Boğaz Hastalıkları</option>
-                                                    <option value="7">Nöroloji</option>
-                                                    <option value="8">Beyin ve Sinir Cerrahisi</option>
-                                                    <option value="9">Genel Cerrahi</option>
-                                                    <option value="10">Kardiyoloji</option>
-                                                    <option value="11">Dahiliye</option>
-                                                    <option value="12">Fizik Tedavi ve Rehabilitasyon</option>
-                                                    <option value="13">Biorezonans</option>
-                                                    <option value="14">Çocuk Sağlığı ve Hastalıkları</option>
-                                                    <option value="15">Göz Hastalıkları</option>
-                                                </select>
-                                                <span id="poliError"></span>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="row mb-3">
                                         <div class="col-lg-12 pt-3">
                                             <div class="form-group mr-2 mb-3 " >
                                                 <select class="form-select p-3" name="dokForm"  id="doktorlarId">
                                                     <option value="0" >Doktorlar Seçin</option>
+                                                    <?php
+
+
+
+                                                        
+                                                        
+                                                            function test_input($data){ 
+                                                                $data = trim($data);
+                                                                $data = stripcslashes($data);
+                                                                $data = htmlspecialchars($data);
+                                                                return $data;
+                                                            }
+                                                        
+
+                                                            $servername = "localhost";
+                                                            $username = "root";
+                                                            $password = "";
+                                                            $dbname = "hastaneveritabani";
+                                                            $conn = mysqli_connect($servername,$username,$password,$dbname);
+
+                                                        
+                                                            $polikilinik = $_SESSION["polikilinik_id"];
+
+                                                            $hastane_id = $_SESSION["hastane_id"];
+
+                                                            $sql = "SELECT * from doktor where polikilinik_id='$polikilinik' and hastane_id =  '$hastane_id'";
+                                                            
+                                                            $result = mysqli_query($conn,$sql);
+
+                                                            while($row = $result ->fetch_assoc())
+                                                            {        
+                                                                echo("<option value='$row[doktor_id]' >$row[doktor_adi] $row[doktor_soyadi]</option>");
+                                                                
+                                                            }
+
+                                                    ?>
                                                 </select>
                                                 <span id="dokError"></span>
 
@@ -180,47 +192,11 @@
                                     </div>
                                     
             
-                                    <a class="btn btn-main btn-round-full " type="submit" onclick="  ValidatePoliklinik();ValidateDoktor();if(poliError == false && dokError == false){window.setTimeout(function(){location.href = 'E-Randevu2.php';}, 1);}" >Devam<i class="icofont-simple-right ml-2 "></i></a>
+                                    <a class="btn btn-main btn-round-full " type="submit" >Devam<i class="icofont-simple-right ml-2 "></i></a>
                                     
                                   </form>
                                 
-                                <?php
-
-
-                                    if (isset($_POST['submit'])) {
-                                      
-                                      
-                                        function test_input($data){ 
-                                            $data = trim($data);
-                                            $data = stripcslashes($data);
-                                            $data = htmlspecialchars($data);
-                                            return $data;
-                                        }
-                                      
-
-                                        $servername = "localhost";
-                                        $username = "root";
-                                        $password = "";
-                                        $dbname = "hastaneveritabani";
-                                        $conn = mysqli_connect($servername,$username,$password,$dbname);
-
-                                      
-                                        $poliform = test_input($_POST["poliform"]);
-
-                                        $hastane_id = $_SESSION["hastane_id"];
-
-                                        $sql = "SELECT * from doktor where polikilinik_id='$poliform' and hastane_id =  '$hastane_id'";
-                                        
-                                        $result = mysqli_query($conn,$sql);
-
-                                        while($row = $result ->fetch_assoc())
-                                        {        
-
-                                            
-                                        }
-                                              }else {"Mesajınız bulunmamaktadır!!! " ;}
-
-                                ?>
+                                
 
                         </div>
                     </div>
