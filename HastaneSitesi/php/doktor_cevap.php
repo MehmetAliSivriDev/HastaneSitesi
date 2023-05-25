@@ -6,6 +6,7 @@
     <title>Hesap Bilgileri</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='../hnf.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='doktorcevap.css'>
     <script src='main.js'></script>
 
     <!-- CSS only -->
@@ -29,6 +30,11 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
         -o-background-size: cover;
         background-size: cover;
     }
+
+
+
+
+
 
 </style>
 
@@ -113,12 +119,12 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
        
       
 
-<div class="container">
-    <h2>Gelen Kutusu</h2>
+<div class="gelenkutusu">
+    <h2>Gelen Kutusu  </h2>
     <form method="POST" action="">
 
 
-        <label for="bölüm">Bölüm:</label>
+        <label for="bölüm"></label>
         <select name="bölüm"  id="bölüm">
         <option value="#" ></option>
             <option value="üroloji">Üroloji</option>
@@ -162,7 +168,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
         <br>
         
         <textarea name = "ileti" placeholder="Hastanıza iletmek istediğiniz mesaj"></textarea><br>-->
-        <input type="submit" name="submit" value="Listele">
+        <input type="submit" name="submit" class ="Listele" value="Listele">
     </form>
     </div>
 
