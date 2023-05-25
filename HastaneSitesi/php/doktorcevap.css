@@ -1,7 +1,7 @@
 .gelenkutusu {
     text-align: center;
     background-color: white;
-    height: 450px;
+    height: 350px;
   }
 
   .gelenkutusu h2::before {
@@ -69,4 +69,40 @@
   .Listele:active {
     background-color:  #1605af;
   }
+  .sorulistele{
+
+background-color: #00594f;
+
+
+  }
+
+  .soru_ortala {
+    text-align: center;
+  }
+  .soru_ortala {
+    width: 600px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
   
+  textarea {
+    width: 500px;
+    height: 100px;
+    resize: vertical;
+  }
+  
+
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
