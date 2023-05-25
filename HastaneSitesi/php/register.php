@@ -42,6 +42,8 @@ if(isset($_POST["kayit"])){
     $tcKimlik = test_input($_POST["identitiyNumber"]);
     $sifre = test_input($_POST["password"]);
 
+    $hashliSifre = hash('sha512', $sifre);
+
     // ------------------------------------------------------------------------------------
     $sql = "INSERT INTO hastalar (`hasta_adi`, `hasta_soyadi`, `hasta_eposta`, `hasta_TC`, `hasta_sifre`) VALUES
         (?,?,?,?,?)";
@@ -51,7 +53,7 @@ if(isset($_POST["kayit"])){
 
     $stmt = mysqli_prepare($conn,$sql);
     // sorgumuzda çalıştırılacak parametreleri gönderiyoruz  is -> i = int ve s = string
-    mysqli_stmt_bind_param($stmt, "sssss", $ad, $soyad,$email,$tcKimlik,$sifre);
+    mysqli_stmt_bind_param($stmt, "sssss", $ad, $soyad,$email,$tcKimlik,$hashliSifre);
     // sorgu çalıştır
     
     $kayitlar = mysqli_stmt_get_result($stmt);

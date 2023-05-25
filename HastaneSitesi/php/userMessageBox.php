@@ -21,7 +21,8 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
 <link rel="stylesheet" href="../icofont/icofont.min.css">
 </head>
 <body>
-  
+<div class="preloader"></div>
+
 <?php  ob_start(); session_start();?>
 
   
@@ -133,7 +134,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                 <div class="panel">
                     <div class="panel-heading">
                         <div class="pull-left">
-                            <h3 class="panel-title">Mesajlar</h3>
+                            <h3 class="panel-title">Mesaj</h3>
                         </div>
                         
                         <div class="clearfix"></div>

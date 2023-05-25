@@ -49,8 +49,10 @@ if(isset($_POST["giris"])){
         while($row = mysqli_fetch_assoc($result)){
             $kullaniciEmail = $row["hasta_eposta"];
             $kullaniciSifre = $row["hasta_sifre"];
+
+            $girilenSifre = hash('sha512', $sifre);
             
-            if($email == $kullaniciEmail && $sifre == $kullaniciSifre){
+            if($email == $kullaniciEmail && $girilenSifre == $kullaniciSifre){
                 echo("<div class='alert alert-success' role='alert'>
                 Giriş Başarılı Siteye Yönlendiriliyorsunuz.
               </div>");

@@ -127,36 +127,22 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
         <label for="bölüm"></label>
         <select name="bölüm"  id="bölüm">
         <option value="#" ></option>
-            <option value="üroloji">Üroloji</option>
-            <option value="BeslenmeVeDiyet">Beslenme ve Diyet</option>
-
-            <option value="RuhSağlığıVeHastalıkları">RuhSağlığıVeHastalıkları</option>
-    
-            <option value="KlinikPsikolog">KlinikPsikolog</option>
-        
-            <option value="Algoloji">Algoloji</option>
-            
-            <option value="KulakBurunBoğazHastalıkları">KulakBurunBoğazHastalıkları</option>
-            
-            <option value="nöroloji">nöroloji</option>
-            
-            <option value="BeyinVeSinirCerrahisi">BeyinVeSinirCerrahisi</option>
-            
-            <option value="GenelCerrahi">GenelCerrahi</option>
-            
-            <option value="kardiyoloji">kardiyoloji</option>
-        
-            <option value="dahiliye">dahiliye</option>
-        
-            <option value="AcilServis">AcilServis</option>
-        
-            <option value="FizikTedaviVeRehabilitasyon">FizikTedaviVeRehabilitasyon</option>
-        
-            <option value="biorezonans">biorezonans</option>
-        
-            <option value="CocukSaglıgıVeHastalıkları">CocukSaglıgıVeHastalıkları</option>
-            
-            <option value="GozHastalıkları">GozHastalıkları</option>
+        <option value="0">Poliklinik Seçin</option>
+                                    <option value="Üroloji">Üroloji</option>
+                                    <option value="Beslenme ve Diyet">Beslenme ve Diyet</option>
+                                    <option value="Ruh Sağlığı ve Hastalıkları">Ruh Sağlığı ve Hastalıkları</option>
+                                    <option value="Klinik Psikolog">Klinik Psikolog</option>
+                                    <option value="Algoloji">Algoloji</option>
+                                    <option value="Kulak Burun Boğaz Hastalıkları">Kulak Burun Boğaz Hastalıkları</option>
+                                    <option value="Nöroloji">Nöroloji</option>
+                                    <option value="Beyin ve Sinir Cerrahisi">Beyin ve Sinir Cerrahisi</option>
+                                    <option value="Genel Cerrahi">Genel Cerrahi</option>
+                                    <option value="Kardiyoloji">Kardiyoloji</option>
+                                    <option value="Dahiliye">Dahiliye</option>
+                                    <option value="Fizik Tedavi ve Rehabilitasyon">Fizik Tedavi ve Rehabilitasyon</option>
+                                    <option value="Biorezonans">Biorezonans</option>
+                                    <option value="Çocuk Sağlığı ve Hastalıkları">Çocuk Sağlığı ve Hastalıkları</option>
+                                    <option value="Göz Hastalıkları">Göz Hastalıkları</option>
 
         </select>
 

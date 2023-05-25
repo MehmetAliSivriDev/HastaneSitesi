@@ -66,8 +66,9 @@
             if($result == false){
                          
                     echo("<div class='alert alert-success' role='alert'>
-                    İletiniz Başarıyla Gönderilmiştir.
+                    Hastaya Mesajınız Başarıyla İletilmiştir.
                   </div>");
+                  header("Refresh: 2; doktor_cevap.php");
                    
             }
             else{

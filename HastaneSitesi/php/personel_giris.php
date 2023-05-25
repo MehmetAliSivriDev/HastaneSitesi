@@ -130,9 +130,11 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                 $doktorAd = $row["doktor_adi"];
                 $doktorSoyad = $row["doktor_soyadi"];
                 $doktorId = $row["doktor_id"];
+
+                $girilenSifre = hash('sha512', $sifre);
                 
                 
-                if($email == $doktorEmail && $sifre == $doktorSifre){
+                if($email == $doktorEmail && $girilenSifre == $doktorSifre){
                     echo("<div class='alert alert-success' role='alert'>
                     Giriş Başarılı Siteye Yönlendiriliyorsunuz.
                 </div>");
@@ -152,7 +154,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                     echo("<div class='alert alert-danger' role='alert'>
                         Hatalı Giriş Yaptınız Lütfen Tekrar Deneyiniz.
                     </div>");
-                    header("Refresh: 2; ../loginRegisterScreen.html");
+                    header("Refresh: 2; personel_giris.php");
             }
             
             

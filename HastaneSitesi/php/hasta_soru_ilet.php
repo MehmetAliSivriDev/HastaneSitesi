@@ -46,34 +46,51 @@
             
            
             // ifademiniz hazırlıyoruz. parse edilir ve DB sunucu saklanır. Tekrar tekrar kullanılabilir
-            
-            $stmt = mysqli_prepare($conn,$sql);
-            // sorgumuzda çalıştırılacak parametreleri gönderiyoruz  is -> i = int ve s = string
-            mysqli_stmt_bind_param($stmt, "sss", $hasta_eposta,$poliklinik,$soru);
-            // sorgu çalıştır
-            mysqli_stmt_execute($stmt);
+            $bosKontrol = true;
 
-           
-            $result = mysqli_stmt_get_result($stmt);
+            if($hasta_eposta == "" || $soru == ""){
 
-            // ------------------------------------------------------------------burya doktor siteden mesaj ile geri donsun yada arasın hastasını
-            if($result == false){
-             
-                    //buraya alert olarak aranacagınız yaz yada doktor mesajlaşması için bişiler  yap
-                echo("<div class='alert alert-success' role='alert'>
-                iletiniz Başarıyla Gönderilmiştir . ilgili konu ile uzman doktorumuz tarafından size en kısa zamanda geri dönüş  sağlanacakır.
-              </div>");
-                
-              header("Refresh: 2; ../index.html");
-
-            }
-            else{
                 echo("<div class='alert alert-danger' role='alert'>
-                Hatalı Işlem Yaptınız Lütfen Tekrar Deneyiniz.
+                Lütfen email ve soru kısmını boş bırakmayınız!
               </div>");
 
               header("Refresh: 2; ../index.html");
+
+
             }
+            else
+            {
+                $stmt = mysqli_prepare($conn,$sql);
+                // sorgumuzda çalıştırılacak parametreleri gönderiyoruz  is -> i = int ve s = string
+                mysqli_stmt_bind_param($stmt, "sss", $hasta_eposta,$poliklinik,$soru);
+                // sorgu çalıştır
+                mysqli_stmt_execute($stmt);
+
+            
+                $result = mysqli_stmt_get_result($stmt);
+
+                // ------------------------------------------------------------------burya doktor siteden mesaj ile geri donsun yada arasın hastasını
+                if($result == false){
+                
+                        //buraya alert olarak aranacagınız yaz yada doktor mesajlaşması için bişiler  yap
+                    echo("<div class='alert alert-success' role='alert'>
+                    İletiniz başarı ile gönderilmiştir. Doktorlarımız en kısa sürede size ulaşacaktır.
+                </div>");
+                    
+                header("Refresh: 2; ../index.html");
+
+                }
+                else{
+                    echo("<div class='alert alert-danger' role='alert'>
+                    Hata Meydana Geldi.
+                </div>");
+
+                header("Refresh: 2; ../index.html");
+                }
+            }
+
+
+            
 
         }
 
