@@ -150,9 +150,6 @@
                                                     <option value="0" >Doktorlar Seçin</option>
                                                     <?php
 
-
-
-                                                        
                                                         
                                                             function test_input($data){ 
                                                                 $data = trim($data);

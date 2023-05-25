@@ -28,7 +28,7 @@
 
 </head>
 <body>
-<?php session_start();?>
+<?php ob_start(); session_start(); ?>
 
 
   <div class="preloader"></div>
@@ -140,7 +140,7 @@
                                 <h2 class="mb-2 title-color">Poliklinik Seçimi</h2>
                                 <p class="mb-4">Rahatsızlığınız bulunduğu poliklinik seçerek size daha doğru hizmet vermemize yardımcı olun.</p>
                             </div>
-                            <form id="#" class="appoinment-form " name="form" method="post" action="#">
+                            <form id="#" class="appoinment-form " name="form" method="post" >
                                     <div class="row ">
                                         <div class="col-lg-12 pt-2">
                                             <div class="form-group mr-2 mb-3">
@@ -167,60 +167,26 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-lg-12 pt-3">
-                                            <div class="form-group mr-2 mb-3 " >
-                                                <select class="form-select p-3" name="dokForm"  id="doktorlarId">
-                                                    <option value="0" >Doktorlar Seçin</option>
-                                                </select>
-                                                <span id="dokError"></span>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-            
-                                    <a class="btn btn-main btn-round-full " type="submit" onclick="  ValidatePoliklinik();ValidateDoktor();if(poliError == false && dokError == false){window.setTimeout(function(){location.href = 'E-Randevu2.php';}, 1);}" >Devam<i class="icofont-simple-right ml-2 "></i></a>
                                     
                                   </form>
-                                
-                                <?php
+                                  <?php
 
 
-                                    if (isset($_POST['submit'])) {
-                                      
-                                      
-                                        function test_input($data){ 
-                                            $data = trim($data);
-                                            $data = stripcslashes($data);
-                                            $data = htmlspecialchars($data);
-                                            return $data;
-                                        }
-                                      
-
-                                        $servername = "localhost";
-                                        $username = "root";
-                                        $password = "";
-                                        $dbname = "hastaneveritabani";
-                                        $conn = mysqli_connect($servername,$username,$password,$dbname);
-
-                                      
-                                        $poliform = test_input($_POST["poliform"]);
-
-                                        $hastane_id = $_SESSION["hastane_id"];
-
-                                        $sql = "SELECT * from doktor where polikilinik_id='$poliform' and hastane_id =  '$hastane_id'";
+                                      if (isset($_POST['gonder'])) {
                                         
-                                        $result = mysqli_query($conn,$sql);
+                                        $poliklinik=$_POST['poliForm'];
+                                        $_SESSION["polikilinik_id"] = $poliklinik;
 
-                                        while($row = $result ->fetch_assoc())
-                                        {        
+                                        header("Refresh: 0.5; E-Randevu_doktor.php");
+                                      }
 
-                                            
-                                        }
-                                              }else {"Mesajınız bulunmamaktadır!!! " ;}
 
-                                ?>
+                                      ?>
+                                
+
+                                  
+                                      
+
 
                         </div>
                     </div>
