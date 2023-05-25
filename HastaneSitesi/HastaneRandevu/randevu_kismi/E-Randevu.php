@@ -143,15 +143,15 @@
               </div>
             </div> 
           </div>
+        
             
         <div class="container bg-white p-5" style="margin-top: -50px;  width: 950px;">
-          <form id="form1" name="form1">
+          <form id="form1" name="form1" method="POST">
             
               <div class="form-group-center  col-sm-12 col-md-12 col-lg-8 m-5 "  >
                 <label for="hastane" style="font-size: 20px; font-weight: 500; " >Randevu almak istediğiniz hastaneyi seçiniz:</label>
-                <select class="form-control" style="padding: 20px; font-size: 16px; font-weight: 500;" id="hastane" name="hastane" required>
-                  <option value="0" >Hastane Seçiniz</option>
-                  <option value="1" >LÜLEBURGAZ ÖZEL HASTANESİ</option>
+                <select class="form-control" style="padding: 20px; font-size: 16px; font-weight: 500;" id="hastane" name="hastane" >
+                  <option value="1">LÜLEBURGAZ ÖZEL HASTANESİ</option>
                   <option value="2">BABAESKİ ÖZEL HASTANESİ</option>
                   <option value="3">PINARHİSAR ÖZEL HASTANESİ</option>
                   <option value="4">DEMİRKÖY ÖZEL HASTANESİ</option>
@@ -163,11 +163,12 @@
 
             
 
-              <button  type="button" class="btn btn-primary " id="btn" onclick="ValidateHastane();if(hastError == false){window.setTimeout(function(){location.href = 'E-Randevu1.php';}, 1);}" style="padding: 8px 30px; font-size: 20px; margin-left: 40px; ">Devam</button>
+              <button  type="submit" name="btn" class="btn btn-primary " onclick="ValidateHastane();if(hastError == false){window.setTimeout(function(){location.href = 'E-Randevu1.php';}, 1);}" id="btn"  style="padding: 8px 30px; font-size: 20px; margin-left: 40px; ">Devam</button>
 
-            
+              
           </form>
         </div>
+        
 
         <footer> 
           <div class="container-fluid" style="background-color: #2D2D2D;">
@@ -215,6 +216,10 @@
   <script src = "HastaneRandevu.js"></script>
       <script src="Bootstrap/bootstrap-5.2.3-dist/bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
 
+  
+      </script>
+      
+
       <script>
         var hastError = true;
 
@@ -234,7 +239,11 @@
           
   
       </script>
-      
+
+bu script kodunu php ye çevir
+ChatGPT
+​
+
 
 
 
