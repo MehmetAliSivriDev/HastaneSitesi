@@ -30,6 +30,7 @@
 <body>
 <?php session_start();?>
 
+
   <div class="preloader"></div>
 
     <header class="topbar">
@@ -180,7 +181,47 @@
                                     
             
                                     <a class="btn btn-main btn-round-full " type="submit" onclick="  ValidatePoliklinik();ValidateDoktor();if(poliError == false && dokError == false){window.setTimeout(function(){location.href = 'E-Randevu2.php';}, 1);}" >Devam<i class="icofont-simple-right ml-2 "></i></a>
-                                </form>
+                                    
+                                  </form>
+                                
+                                <?php
+
+
+                                    if (isset($_POST['submit'])) {
+                                      
+                                      
+                                        function test_input($data){ 
+                                            $data = trim($data);
+                                            $data = stripcslashes($data);
+                                            $data = htmlspecialchars($data);
+                                            return $data;
+                                        }
+                                      
+
+                                        $servername = "localhost";
+                                        $username = "root";
+                                        $password = "";
+                                        $dbname = "hastaneveritabani";
+                                        $conn = mysqli_connect($servername,$username,$password,$dbname);
+
+                                      
+                                        $poliform = test_input($_POST["poliform"]);
+
+                                        $hastane_id = $_SESSION["hastane_id"];
+
+                                        $sql = "SELECT * from doktor where polikilinik_id='$poliform' and hastane_id =  '$hastane_id'";
+                                        
+                                        $result = mysqli_query($conn,$sql);
+
+                                        while($row = $result ->fetch_assoc())
+                                        {        
+
+                                            
+                                        }
+                                              }else {"Mesajınız bulunmamaktadır!!! " ;}
+
+                                ?>
+
                         </div>
                     </div>
                 </div>

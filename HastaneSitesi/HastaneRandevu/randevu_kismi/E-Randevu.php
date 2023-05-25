@@ -29,7 +29,7 @@
 
 <?php session_start();?>
 
-  <div class="preloader"></div>
+  
     
   <header class="topbar">
     <div class="container">
@@ -146,7 +146,7 @@
         
             
         <div class="container bg-white p-5" style="margin-top: -50px;  width: 950px;">
-          <form id="form1" name="form1" method="POST">
+          <form id="form1" name="form1" method="POST" action = "E-Randevu1.php">
             
               <div class="form-group-center  col-sm-12 col-md-12 col-lg-8 m-5 "  >
                 <label for="hastane" style="font-size: 20px; font-weight: 500; " >Randevu almak istediğiniz hastaneyi seçiniz:</label>
@@ -157,14 +157,24 @@
                   <option value="4">DEMİRKÖY ÖZEL HASTANESİ</option>
                   <option value="5">VİZE ÖZEL HASTANESİ</option>
                 </select>
-                <span id="hastError"></span>
+                
             </div>
               
 
             
 
-              <button  type="submit" name="btn" class="btn btn-primary " onclick="ValidateHastane();if(hastError == false){window.setTimeout(function(){location.href = 'E-Randevu1.php';}, 1);}" id="btn"  style="padding: 8px 30px; font-size: 20px; margin-left: 40px; ">Devam</button>
+              <button  type="submit" name="btn" class="btn btn-primary "  id="btn"  style="padding: 8px 30px; font-size: 20px; margin-left: 40px; ">Devam</button>
 
+              <?php 
+
+                if(isset($_POST["btn"])){
+
+                  $hastane=$_POST['hastane'];
+                  $_SESSION["hastane_id"] = $hastane;
+                  
+                }
+
+            ?>
               
           </form>
         </div>
@@ -217,33 +227,7 @@
       <script src="Bootstrap/bootstrap-5.2.3-dist/bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
 
   
-      </script>
       
-
-      <script>
-        var hastError = true;
-
-         function ValidateHastane(){
-            if(form1.hastane.value == 0)
-            {
-                document.getElementById("hastError").innerHTML = "Lütfen Bir Hastane Seçin...";
-                
-                hastError = true;
-            }
-            else
-            {
-                document.getElementById("hastError").innerHTML = "";
-                hastError = false;
-            }
-        }
-          
-  
-      </script>
-
-bu script kodunu php ye çevir
-ChatGPT
-​
-
 
 
 
