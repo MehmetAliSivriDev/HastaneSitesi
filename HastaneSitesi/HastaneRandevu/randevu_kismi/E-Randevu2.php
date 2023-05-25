@@ -26,7 +26,6 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-   
 </head>
 <body>
 
@@ -134,81 +133,80 @@
                           <div class="row">
                             <h2 class="mb-2 title-color">Hastane Randevusu</h2>
                             <p class="mb-4">Randevu alma işleminde aşağıda belirtilen tarih, randevu saati ve kısa mesaj gibi bilgileri doldurarak randevu alma işlemi tamamlanmış olacaktır. </p>
-                               
+                              
                           </div>
-                          
                             
-                            
-                          
-<!--
-  // Güncellenecek tarih
-$tarih = "13 Nisan 2023";
+                              <form id="#" class="appoinment-form " name="form" method="post" action="E-Randevu_kayit.php">
+                                    <div class="row" >
+                                        <div class="uygun-saatler">
+                                          <?php 
 
-// Güncellenecek saatler
-$saatler = array("10:00", "10:30", "11:00", "11:30");
+                                              function test_input($data){ 
+                                                $data = trim($data);
+                                                $data = stripcslashes($data);
+                                                $data = htmlspecialchars($data);
+                                                return $data;
+                                              }
 
-// Tarih için saatleri güncelle
-foreach ($saatler as $saat) {
-    $sql = "UPDATE tarih SET saat='$saat' WHERE tarih='$tarih'";
-    if (mysqli_query($baglanti, $sql)) {
-        echo "Tarih için saat güncellendi: $saat\n";
-    } else {
-        echo "Hata: " . mysqli_error($baglanti);
-    }
-}
--->
-                            
-<form id="#" class="appoinment-form" name="form" method="post" action="#">
-    <div class="row">
-        <div class="uygun-saatler">
-            <?php
-            function test_input($data)
-            {
-                $data = trim($data);
-                $data = stripcslashes($data);
-                $data = htmlspecialchars($data);
-                return $data;
-            }
 
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "hastaneveritabani";
-            $conn = mysqli_connect($servername, $username, $password, $dbname);
+                                              $servername = "localhost";
+                                              $username = "root";
+                                              $password = "";
+                                              $dbname = "hastaneveritabani";
+                                              $conn = mysqli_connect($servername,$username,$password,$dbname);
 
-            $doktor_id = $_SESSION["doktor"];
 
-            $sql = "SELECT DISTINCT calisma_tarihi FROM calisma_saati WHERE doktor_id='$doktor_id'";
-            $result = mysqli_query($conn, $sql);
+                                              $doktor_id = $_SESSION["doktor"];
 
-            while ($row = $result->fetch_assoc()) {
-                $tarih = $row["calisma_tarihi"];
-                echo "<div class='col-lg-6'>
-                          <div class='item' data-date='11 Nisan 2023'>
-                              <div class='tarih p-2'>$tarih</div>
-                              <div class='saatler'>";
+                                              $sql = "SELECT DISTINCT calisma_tarihi from calisma_saati where doktor_id='$doktor_id'";
 
-                $sql2 = "SELECT * FROM calisma_saati WHERE doktor_id='$doktor_id' AND calisma_tarihi ='$tarih'";
-                $result2 = mysqli_query($conn, $sql2);
+                                              $result = mysqli_query($conn,$sql);
 
-                while ($row2 = $result2->fetch_assoc()) {
-                    $saat = $row2["calisma_saati"];
-                    $doluMu = $row2["doluMu"];
-                    if ($row2["doluMu"] == 0) {
-                        echo "<button value='$saat' type='submit' class='saat ' disabled>$saat</button>";
-                    } else {
-                        echo "<button value='$saat' type='submit' class='saat saat-dolu'>$saat</button>";
-                    }
-                }
-                echo "</div>
-                      </div>
-                      </div>";
-            }
-            ?>
-        </div>
-    </div>
-</form>
+                                              while($row = $result ->fetch_assoc())
+                                              {        
+                                                $tarih = $row["calisma_tarihi"];
 
+                                                //echo($tarih."<br>");
+                                                echo" <div class='col-lg-6 '>
+                                                <div class='item' data-date='11 Nisan 2023'>
+                                                  <div class='tarih p-2 '>$tarih</div>
+                                                  <div class='saatler'>
+                                                  <input value='$tarih' type='hidden' name='randevutarih'>
+                        
+                                                  ";
+                                                  
+                                                $sql2 = "SELECT * from calisma_saati where doktor_id='$doktor_id' and calisma_tarihi ='$tarih'";
+
+                                                $result2 = mysqli_query($conn,$sql2);
+
+                                                while($row2 = $result2 ->fetch_assoc())
+                                                { 
+                                                  $saat = $row2["calisma_saati"];
+                                                  $doluMu = $row2["doluMu"];
+                                                  if($row2["doluMu"] == 0){
+                                                    echo"<input value='$saat' name='saatGonder'  type='submit' class='saat' disabled>";
+                                                  }
+                                                  else
+                                                  {
+                                                    echo"<input value='$saat' name='saatGonder'  type='submit' class='saat'>";
+                                                  }
+                                                  
+                                                    
+                                                }
+                                                echo"</div>
+                                                </div>
+                                              </div>";
+                                              }
+
+
+                                          ?>
+
+                                         
+                                    
+                                
+
+                                    </div>
+                                  </form>
                         </div>
                     </div>
                 </div>
