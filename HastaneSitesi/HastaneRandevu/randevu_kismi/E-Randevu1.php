@@ -28,7 +28,7 @@
 
 </head>
 <body>
-<?php ob_start(); session_start(); ?>
+<?php ob_start(); session_start();?>
 
 
   <div class="preloader"></div>
@@ -140,11 +140,11 @@
                                 <h2 class="mb-2 title-color">Poliklinik Seçimi</h2>
                                 <p class="mb-4">Rahatsızlığınız bulunduğu poliklinik seçerek size daha doğru hizmet vermemize yardımcı olun.</p>
                             </div>
-                            <form id="#" class="appoinment-form " name="form" method="post" >
+                            <form id="#" class="appoinment-form " name="form" method="post" action="">
                                     <div class="row ">
                                         <div class="col-lg-12 pt-2">
                                             <div class="form-group mr-2 mb-3">
-                                                <select class="form-select p-3 " name="poliForm"   id="poliklinikId" onchange="doktorGoster()" >
+                                                <select class="form-select p-3 " name="poliForm"   id="poliForm">
                                                     <option value="0">Poliklinik Seçin</option>
                                                     <option value="1">Üroloji</option>
                                                     <option value="2">Beslenme ve Diyet</option>
@@ -167,26 +167,28 @@
                                             </div>
                                         </div>
                                     </div>
+            
+                                    <button  type="submit" name="gonder" class="btn btn-primary "  id="btn"  style="padding: 8px 30px; font-size: 20px; margin-left: 40px; ">Devam</button>
                                     
+                                    
+
                                   </form>
+
                                   <?php
 
 
-                                      if (isset($_POST['gonder'])) {
+                                        if (isset($_POST['gonder'])) {
+                                          
+                                          $poliklinik=$_POST['poliForm'];
+                                          $_SESSION["polikilinik_id"] = $poliklinik;
+
+                                          header("Refresh: 0.5; E-Randevu_doktor.php");
+                                        }
                                         
-                                        $poliklinik=$_POST['poliForm'];
-                                        $_SESSION["polikilinik_id"] = $poliklinik;
-
-                                        header("Refresh: 0.5; E-Randevu_doktor.php");
-                                      }
-
-
-                                      ?>
+                                        
+                                  ?>
                                 
-
-                                  
-                                      
-
+                               
 
                         </div>
                     </div>

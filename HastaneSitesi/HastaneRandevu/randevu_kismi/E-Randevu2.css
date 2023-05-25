@@ -1,4 +1,5 @@
 
+
 .section {
     padding: 100px 0;
 }
@@ -363,6 +364,10 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
+  
+  }
+  .saatler.saat-dolu{
+    background-color: red;
   }
   
   .saat:hover {
@@ -450,6 +455,14 @@ body {
   background-color: #007bff;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+}
+
+.dolu_saatler{
+  background-color:#e12454 ;
+}
+.saat-dolu{
+  background-color: #FF0000; /* Dolu saatlerin arka plan rengi */
+  color: #FFFFFF; /* Dolu saatlerin metin rengi */
 }
 
 .uygun-saatler .item .saatler button:hover {
