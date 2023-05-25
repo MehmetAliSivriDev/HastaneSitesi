@@ -27,7 +27,7 @@
 </head>
 <body>
 
-<?php session_start();?>
+<?php ob_start(); session_start();?>
 
   
     
@@ -146,7 +146,7 @@
         
             
         <div class="container bg-white p-5" style="margin-top: -50px;  width: 950px;">
-          <form id="form1" name="form1" method="POST" action = "E-Randevu1.php">
+          <form id="form1" name="form1" method="POST" action = "">
             
               <div class="form-group-center  col-sm-12 col-md-12 col-lg-8 m-5 "  >
                 <label for="hastane" style="font-size: 20px; font-weight: 500; " >Randevu almak istediğiniz hastaneyi seçiniz:</label>
@@ -164,20 +164,22 @@
             
 
               <button  type="submit" name="btn" class="btn btn-primary "  id="btn"  style="padding: 8px 30px; font-size: 20px; margin-left: 40px; ">Devam</button>
-
-              <?php 
-
-                if(isset($_POST["btn"])){
-
-                  $hastane=$_POST['hastane'];
-                  $_SESSION["hastane_id"] = $hastane;
-                  
-                }
-
-            ?>
-              
+ 
           </form>
         </div>
+
+        <?php 
+
+          if(isset($_POST["btn"])){
+
+            $hastane=$_POST['hastane'];
+            $_SESSION["hastane_id"] = $hastane;
+
+            header("Refresh: 0.5; E-Randevu1.php");
+            
+          }
+
+        ?>  
         
 
         <footer> 

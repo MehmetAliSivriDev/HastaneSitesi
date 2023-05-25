@@ -122,8 +122,6 @@
   
     </nav>
 
-    <?php echo("asdfsadfsdasdfasdfasdfasdfasdfdas".$_SESSION["polikilinik_id"]); ?>
-
     <div class="container">
         <section class="section appoinment">
             <div class="container">
@@ -148,12 +146,7 @@
                                             <div class="form-group mr-2 mb-3 " >
                                                 <select class="form-select p-3" name="dokForm"  id="doktorlarId">
                                                     <option value="0" >Doktorlar Seçin</option>
-                                                    <?php
-
-
-
-                                                        
-                                                        
+                                                    <?php 
                                                             function test_input($data){ 
                                                                 $data = trim($data);
                                                                 $data = stripcslashes($data);

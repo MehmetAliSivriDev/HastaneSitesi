@@ -28,7 +28,7 @@
 
 </head>
 <body>
-<?php session_start();?>
+<?php ob_start(); session_start();?>
 
 
   <div class="preloader"></div>
@@ -140,7 +140,7 @@
                                 <h2 class="mb-2 title-color">Poliklinik Seçimi</h2>
                                 <p class="mb-4">Rahatsızlığınız bulunduğu poliklinik seçerek size daha doğru hizmet vermemize yardımcı olun.</p>
                             </div>
-                            <form id="#" class="appoinment-form " name="form" method="post" action="E-Randevu_doktor.php">
+                            <form id="#" class="appoinment-form " name="form" method="post" action="">
                                     <div class="row ">
                                         <div class="col-lg-12 pt-2">
                                             <div class="form-group mr-2 mb-3">
@@ -170,18 +170,23 @@
             
                                     <button  type="submit" name="gonder" class="btn btn-primary "  id="btn"  style="padding: 8px 30px; font-size: 20px; margin-left: 40px; ">Devam</button>
                                     
-                                    <?php
+                                    
+
+                                  </form>
+
+                                  <?php
 
 
                                         if (isset($_POST['gonder'])) {
                                           
                                           $poliklinik=$_POST['poliForm'];
                                           $_SESSION["polikilinik_id"] = $poliklinik;
+
+                                          header("Refresh: 0.5; E-Randevu_doktor.php");
                                         }
-
-                                        ?>
-
-                                  </form>
+                                        
+                                        
+                                  ?>
                                 
                                
 
