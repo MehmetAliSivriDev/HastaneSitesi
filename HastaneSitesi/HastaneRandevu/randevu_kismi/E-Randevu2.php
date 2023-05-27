@@ -136,9 +136,6 @@
                                
                           </div>
                             
-                              <form id="#" class="appoinment-form " name="form" method="post" action="E-Randevu_kayit.php">
-                                    <div class="row" >
-                                        <div class="uygun-saatler">
                                           <?php 
 
                                               function test_input($data){ 
@@ -161,13 +158,18 @@
                                               $sql = "SELECT DISTINCT calisma_tarihi from calisma_saati where doktor_id='$doktor_id'";
 
                                               $result = mysqli_query($conn,$sql);
+                                              echo"";
 
                                               while($row = $result ->fetch_assoc())
                                               {        
                                                 $tarih = $row["calisma_tarihi"];
 
                                                 //echo($tarih."<br>");
-                                                echo" <div class='col-lg-6 '>
+                                                echo" 
+                                                <form id='#' class='' name='form' method='post' action='E-Randevu_kayit.php'>
+                                    <div class='row' >
+                                        <div class='uygun-saatler'>
+                                                <div class='col-lg-6 '>
                                                 <div class='item' data-date='11 Nisan 2023'>
                                                   <div class='tarih p-2 '>$tarih</div>
                                                   <div class='saatler'>
@@ -195,7 +197,8 @@
                                                 }
                                                 echo"</div>
                                                 </div>
-                                              </div>";
+                                              </div></div>
+                                              </form>";
                                               }
 
 
@@ -205,8 +208,7 @@
                                     
                                 
 
-                                    </div>
-                                  </form>
+                                    
                         </div>
                     </div>
                 </div>
