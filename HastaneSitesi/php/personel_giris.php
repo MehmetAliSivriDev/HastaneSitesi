@@ -63,7 +63,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
       
               <!-- Login Form -->
               <div class="login form-peice">
-                <form class="login-form" action="" method="post">
+                <form class="login-form" action="personel_giris_kontrol.php" method="post">
                   <div class="form-group">
                     <label for="loginemail">Email Adresi</label>
                     <input type="email" name="loginemail" id="loginemail" required>
@@ -85,88 +85,6 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
       
         </section>
     </div>
-    
-<?php
-
-    if(isset($_POST["giris"])){
-        // --------------------------------------------------------------------
-        // Kullabıcı girişine yazılan kod ile hiç bir bilgi içeriye alınmayacak 
-        function test_input($data){ 
-            $data = trim($data);
-            $data = stripcslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
-        }
-        // ---------------------------------------------------------------------
-
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "hastaneveritabani";
-
-
-        //create connection 
-
-        $conn = mysqli_connect($servername,$username,$password,$dbname);
-        $new = mysqli_set_charset($conn, "utf8");
-        if($conn->connect_error){
-            die("Bağlantı hatası: ".$conn->connect_error);
-        }
-
-        $email = test_input($_POST["loginemail"]);
-        $sifre = test_input($_POST["loginPassword"]);
-
-        // ------------------------------------------------------------------------------------
-        $sql = "Select * from doktor";
-        
-        $result = mysqli_query($conn,$sql);
-
-        $dogrulama = false;
-
-        if(mysqli_num_rows($result) > 0){
-            while($row = mysqli_fetch_assoc($result)){
-                $doktorEmail = $row["doktor_eposta"];
-                $doktorSifre = $row["doktor_sifre"];
-                $doktorAd = $row["doktor_adi"];
-                $doktorSoyad = $row["doktor_soyadi"];
-                $doktorId = $row["doktor_id"];
-
-                $girilenSifre = hash('sha512', $sifre);
-                
-                
-                if($email == $doktorEmail && $girilenSifre == $doktorSifre){
-                    echo("<div class='alert alert-success' role='alert'>
-                    Giriş Başarılı Siteye Yönlendiriliyorsunuz.
-                </div>");
-
-                    $dogrulama = true;
-
-                    $_SESSION["doktor_eposta"] = $doktorEmail;
-                    $_SESSION["doktor_adi"] = $doktorAd;
-                    $_SESSION["doktor_soyadi"] = $doktorSoyad;
-                    $_SESSION["doktor_id"] = $doktorId;
-
-                    header("Refresh: 2; doktor_cevap.php");
-
-                }
-            }
-            if($dogrulama == false){
-                    echo("<div class='alert alert-danger' role='alert'>
-                        Hatalı Giriş Yaptınız Lütfen Tekrar Deneyiniz.
-                    </div>");
-                    header("Refresh: 2; personel_giris.php");
-            }
-            
-            
-        }
-
-        // ---------------------------------------------------------------------------------------
-    }
-
-?>
-    
-
-
 
 
     <footer> 

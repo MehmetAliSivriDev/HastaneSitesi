@@ -118,6 +118,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="../../php/userAccountInfo.php">Hesap Ek Bilgilerini Güncelle</a>
+              <a class="dropdown-item" href="../../Hastanelerimiz/Hasta_islemleri.php">Hasta İşlemlerine Git</a>
               <a class="dropdown-item" href="../../php/userMessageBox.php">Mesajlar</a>
               <a class="dropdown-item" href="../../index.html">Çıkış Yap</a>
             </div>

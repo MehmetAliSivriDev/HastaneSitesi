@@ -237,14 +237,23 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                   }
 
               }
-              
-              
-              // ------------------------------------------------------------------------------------
+
+              if ($kanError == false && $cinsiyetError == false && $dateError == false) {
                 $sql = "UPDATE hastalar SET `hasta_cinsiyet` = '$cinsiyet', `hasta_telefon` = '$telefon', `hasta_dogum_tarihi` = '$dogumTarihi',
                 `hasta_dogum_yeri` = '$dogumYeri', `hasta_adress` = '$adres', `hasta_kan` = '$kanGrubu' WHERE `hasta_eposta` = '$hasta_eposta'";
             
               
-              $result = mysqli_query($conn,$sql);
+                $result = mysqli_query($conn,$sql);
+              }
+              else
+              {
+                echo("<div class='alert alert-danger' role='alert'>
+                Lütfen Kan,Cinsiyet ve Doğum Tarihi Bilgilerinizi Boş Bırakmayınız.
+                </div>");
+
+                $result = false;
+              }
+              
               
               // ---------------------------------------------------------------------------------------
 
@@ -256,7 +265,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                 $_SESSION["hasta_soyadi"] = $hasta_soyadi;
                 $_SESSION["hasta_eposta"] = $hasta_eposta;
                 if ($kanError == false && $cinsiyetError == false && $dateError == false) {
-                  header("Refresh: 2; ../Hastanelerimiz/hasta_islemleri.php");
+                  header("Refresh: 1; ../Hastanelerimiz/hasta_islemleri.php");
                 }
                 
                 ob_end_flush();
@@ -265,7 +274,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                 echo("<div class='alert alert-danger' role='alert'>
                 Bilgileriniz Güncellenirken Bir Hata Meydana Geldi.
                 </div>");
-                header("Refresh: 2; userAccountInfo.php");
+                header("Refresh: 3; userAccountInfo.php");
               }
                 
                 
