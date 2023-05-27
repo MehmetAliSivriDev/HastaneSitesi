@@ -133,11 +133,11 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
       
 
 <div class="gelenkutusu">
-    <h2>Hasta soruları  </h2>
+    <h2>Hasta Soruları  </h2>
     <form method="POST" action="">
 
 
-        <label for="bölüm"></label>
+        <b>Poliklinik</b>
         <select name="bölüm"  id="bölüm">
         <option value="#" ></option>
         <option value="0">Poliklinik Seçin</option>
@@ -217,7 +217,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
     
 
         }
-              }else {"Mesajınız bulunmamaktadır!!! " ;}
+              }else {echo"Mesajınız bulunmamaktadır!!! " ;}
 
 ?>
 
