@@ -47,7 +47,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
             <!-- Brand Box -->
             <div class="col-sm-6 brand">
                 <ul>
-                    <li><a href="index.html" class="logo" title="Özel Kırklareli Hastanesi Logosu"><img src="../social_media_icons/logo.png" alt="" width="250px" height="100px"></a></li>
+                    <li><a href="../index.html" class="logo" title="Özel Kırklareli Hastanesi Logosu"><img src="../social_media_icons/logo.png" alt="" width="250px" height="100px"></a></li>
                     <li><a href="https://saglik.gov.tr" target="_blank" title="Sağlık Bakanlığı Logosu"><img src="../social_media_icons/bakanlik_logo.png" alt="" style="width: 100px;height: 100px;"></a></li>
                 </ul>
               
