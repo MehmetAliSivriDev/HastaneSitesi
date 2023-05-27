@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <title>Giriş Kontrol</title>
+</head>
+<body>
+
 <?php
     session_start();
     if(isset($_POST["saatGonder"])){
@@ -64,11 +75,11 @@
             $sql3 = "UPDATE calisma_saati SET `doluMu` = 0 where `calisma_saati` = '$randevu_saati' and `calisma_tarihi` = '$randevu_tarihi'";
 
             $result3 = mysqli_query($conn,$sql3);
-                     
+                    
                 echo("<div class='alert alert-success' role='alert'>
                 Randevunuz Başarı ile Alınmıştır.
-              </div>");
-              //header("Refresh: 2; E-Randevu.php");
+                </div>");
+                header("Refresh: 2; ../../index.html");
                
         }
         else{
@@ -79,3 +90,6 @@
 
 ?>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+</body>
+</html>

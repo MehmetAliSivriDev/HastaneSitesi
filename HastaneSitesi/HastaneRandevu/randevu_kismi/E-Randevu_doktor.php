@@ -141,12 +141,35 @@
                                 <p class="mb-4">Hastanemizin sahip olduğu işinde tecrübeli ve kaliteli doktorlarımızdan randevu almak istediğinizi seçiniz. </p>
                             </div>
                             <form id="#" class="appoinment-form " name="form" method="post" action="">
+                            <?php $dokFormError = "";?>
+                            <?php
+                              if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                if (isset($_POST["doktorsec"])) {
+                                    $dokForm = $_POST["dokForm"];
+                                    
+                                    if ($dokForm == "0") {
+                                        $dokFormError = "Lütfen Doktor Seçiniz.";
+                                    } else {
+                                      $doktor=$_POST['dokForm'];
+                                      $_SESSION["doktor"] = $doktor;
+
+                                      header("Refresh: 0.5; E-Randevu2.php");
+                                        exit;
+                                    }
+                                }
+                              }
+
+                              
+                              ?>
+                            
                                     <div class="row mb-3">
                                         <div class="col-lg-12 pt-3">
                                             <div class="form-group mr-2 mb-3 " >
                                                 <select class="form-select p-3" name="dokForm"  id="doktorlarId">
-                                                    <option value="0" >Doktorlar Seçin</option>
+                                                    <option value="0" >Doktor Seçin</option>
+                                                    
                                                     <?php 
+                                                    
                                                             function test_input($data){ 
                                                                 $data = trim($data);
                                                                 $data = stripcslashes($data);
@@ -178,7 +201,7 @@
 
                                                     ?>
                                                 </select>
-                                                <span id="dokError"></span>
+                                                <span id="dokError"><?php echo $dokFormError;?></span>
 
                                             </div>
                                         </div>
@@ -189,19 +212,7 @@
                                     
                                   </form>
 
-                                  <?php
-
-
-                                        if (isset($_POST['doktorsec'])) {
-                                          
-                                          $doktor=$_POST['dokForm'];
-                                          $_SESSION["doktor"] = $doktor;
-
-                                          header("Refresh: 0.5; E-Randevu2.php");
-                                        }
-                                        
-                                        
-                                  ?>
+                                  
   
                                 
                                 

@@ -6,6 +6,7 @@
     <title>Online Randevu2</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='E-Randevu2.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='E-Randevu2.1.css'>
     <script src='E-Randevu.js'></script>
     <link rel="stylesheet" href="Bootstrap/bootstrap-5.2.3-dist/bootstrap-5.2.3-dist/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -122,99 +123,76 @@
   
     </nav>
 
-    <?php echo($_SESSION["doktor"]);?>
+    
 
     <div class="container">
-        <section class="section appoinment">
-            <div class="container">
-                
-                    <div class="col-lg-12 col-md-10 ">
-                        <div class="appoinment-wrap mt-5 mt-lg-0 ">
-                          <div class="row">
-                            <h2 class="mb-2 title-color">Hastane Randevusu</h2>
-                            <p class="mb-4">Randevu alma işleminde aşağıda belirtilen tarih, randevu saati ve kısa mesaj gibi bilgileri doldurarak randevu alma işlemi tamamlanmış olacaktır. </p>
-                               
-                          </div>
-                            
-                                          <?php 
+    <section class="section appoinment">
+        <div class="container">
+            <div class="col-lg-12 col-md-10 ">
+                <div class="appoinment-wrap mt-5 mt-lg-0 ">
+                    <div class="row">
+                        <h2 class="mb-2 title-color">Hastane Randevusu</h2>
+                        <p class="mb-4">Randevu alma işleminde aşağıda belirtilen tarih, randevu saati ve kısa mesaj gibi bilgileri doldurarak randevu alma işlemi tamamlanmış olacaktır. </p>
+                    </div>
 
-                                              function test_input($data){ 
-                                                $data = trim($data);
-                                                $data = stripcslashes($data);
-                                                $data = htmlspecialchars($data);
-                                                return $data;
-                                              }
+                    <div class="row">
 
+                        <?php
+                        function test_input($data)
+                        {
+                            $data = trim($data);
+                            $data = stripcslashes($data);
+                            $data = htmlspecialchars($data);
+                            return $data;
+                        }
 
-                                              $servername = "localhost";
-                                              $username = "root";
-                                              $password = "";
-                                              $dbname = "hastaneveritabani";
-                                              $conn = mysqli_connect($servername,$username,$password,$dbname);
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $dbname = "hastaneveritabani";
+                        $conn = mysqli_connect($servername, $username, $password, $dbname);
 
+                        $doktor_id = $_SESSION["doktor"];
+                        $sql = "SELECT DISTINCT calisma_tarihi from calisma_saati where doktor_id='$doktor_id'";
+                        $result = mysqli_query($conn, $sql);
 
-                                              $doktor_id = $_SESSION["doktor"];
+                        while ($row = $result->fetch_assoc()) {
+                            $tarih = $row["calisma_tarihi"];
 
-                                              $sql = "SELECT DISTINCT calisma_tarihi from calisma_saati where doktor_id='$doktor_id'";
-
-                                              $result = mysqli_query($conn,$sql);
-                                              echo"";
-
-                                              while($row = $result ->fetch_assoc())
-                                              {        
-                                                $tarih = $row["calisma_tarihi"];
-
-                                                //echo($tarih."<br>");
-                                                echo" 
-                                                <form id='#' class='' name='form' method='post' action='E-Randevu_kayit.php'>
-                                    <div class='row' >
-                                        <div class='uygun-saatler'>
-                                                <div class='col-lg-6 '>
-                                                <div class='item' data-date='11 Nisan 2023'>
-                                                  <div class='tarih p-2 '>$tarih</div>
-                                                  <div class='saatler'>
-                                                  <input value='$tarih' type='hidden' name='randevutarih'>
-                        
-                                                  ";
-                                                  
+                            echo "
+                            <div class='col-lg-6'>
+                                <form id='#' class='' name='form' method='post' action='E-Randevu_kayit.php'>
+                                    <div class='item' data-date='11 Nisan 2023'>
+                                        <div class='tarih p-2'>$tarih</div>
+                                        <div class='saatler'>
+                                            <input value='$tarih' type='hidden' name='randevutarih'>";
+                                              
                                                 $sql2 = "SELECT * from calisma_saati where doktor_id='$doktor_id' and calisma_tarihi ='$tarih'";
+                                                $result2 = mysqli_query($conn, $sql2);
 
-                                                $result2 = mysqli_query($conn,$sql2);
-
-                                                while($row2 = $result2 ->fetch_assoc())
-                                                { 
-                                                  $saat = $row2["calisma_saati"];
-                                                  $doluMu = $row2["doluMu"];
-                                                  if($row2["doluMu"] == 0){
-                                                    echo"<input value='$saat' name='saatGonder'  type='submit' class='saat' disabled>";
-                                                  }
-                                                  else
-                                                  {
-                                                    echo"<input value='$saat' name='saatGonder'  type='submit' class='saat'>";
-                                                  }
-                                                  
+                                                while ($row2 = $result2->fetch_assoc()) {
+                                                    $saat = $row2["calisma_saati"];
+                                                    $doluMu = $row2["doluMu"];
                                                     
+                                                    if ($row2["doluMu"] == 0) {
+                                                        echo "<input value='$saat' name='saatGonder'  type='submit' class='saat' disabled>";
+                                                    } else {
+                                                        echo "<input value='$saat' name='saatGonder'  type='submit' class='saat'>";
+                                                    }
                                                 }
-                                                echo"</div>
-                                                </div>
-                                              </div></div>
-                                              </form>";
-                                              }
-
-
-                                          ?>
-
-                                         
-                                    
-                                
-
-                                    
-                        </div>
+                                                
+                                        echo "</div>
+                                    </div>
+                                </form>
+                            </div>";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
+</div>
 
     <footer> 
         <div class="container-fluid" style="background-color: #2D2D2D;">

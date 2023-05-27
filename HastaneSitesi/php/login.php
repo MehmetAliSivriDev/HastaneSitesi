@@ -63,7 +63,7 @@ if(isset($_POST["giris"])){
                 $_SESSION["hasta_adi"] = $row["hasta_adi"];
                 $_SESSION["hasta_soyadi"] = $row["hasta_soyadi"];
                 $_SESSION["hasta_eposta"] = $email;
-                header("Refresh: 2; ../HastaneRandevu/randevu_kismi/E-Randevu.php");
+                header("Refresh: 2; ../Hastanelerimiz/Hasta_islemleri.php");
 
             }
         }
