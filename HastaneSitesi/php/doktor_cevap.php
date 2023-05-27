@@ -192,7 +192,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
           
             echo "<center><form class='sorulistele' method = 'POST'   action='cevabi_ilet.php'>";
             echo "<div class='soru_ortala'>Hasta Eposta : ".$row["hasta_eposta"]."</div>";
-            echo "<input type='hidden' name='hasta_eposta''>";
+            echo "<input type='hidden' name='hasta_eposta' value='$row[hasta_eposta]'>";
             echo "<div class='soru_ortala'>Hasta Soru : " . $row["soru"] . "</div>";
             echo "<input type='hidden' name='hasta_soru' value='" . $row["soru"] . "'>";
             echo "<div class='soru_ortala'>Poliklinik: " . $row["poliklinik"] . "</div>";

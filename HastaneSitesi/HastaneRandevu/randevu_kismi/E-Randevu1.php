@@ -141,6 +141,26 @@
                                 <p class="mb-4">Rahatsızlığınız bulunduğu poliklinik seçerek size daha doğru hizmet vermemize yardımcı olun.</p>
                             </div>
                             <form id="#" class="appoinment-form " name="form" method="post" action="">
+                            <?php $poliFormError = "";?>
+                            <?php
+
+
+                              if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                  if (isset($_POST["gonder"])) {
+                                      $poliForm = $_POST["poliForm"];
+                                      
+                                      if ($poliForm == "0") {
+                                          $poliFormError = "Lütfen Poliklinik Seçiniz.";
+                                      } else {
+                                        $poliklinik=$_POST['poliForm'];
+                                        $_SESSION["polikilinik_id"] = $poliklinik;
+
+                                        header("Refresh: 0.5; E-Randevu_doktor.php");
+                                          exit;
+                                      }
+                                  }
+                              }
+                              ?>
                                     <div class="row ">
                                         <div class="col-lg-12 pt-2">
                                             <div class="form-group mr-2 mb-3">
@@ -162,7 +182,7 @@
                                                     <option value="14">Çocuk Sağlığı ve Hastalıkları</option>
                                                     <option value="15">Göz Hastalıkları</option>
                                                 </select>
-                                                <span id="poliError"></span>
+                                                <span id="poliError"><?php echo $poliFormError;?></span>
                                                 
                                             </div>
                                         </div>
@@ -174,19 +194,7 @@
 
                                   </form>
 
-                                  <?php
-
-
-                                        if (isset($_POST['gonder'])) {
-                                          
-                                          $poliklinik=$_POST['poliForm'];
-                                          $_SESSION["polikilinik_id"] = $poliklinik;
-
-                                          header("Refresh: 0.5; E-Randevu_doktor.php");
-                                        }
-                                        
-                                        
-                                  ?>
+                                  
                                 
                                
 

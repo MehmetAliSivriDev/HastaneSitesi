@@ -23,12 +23,21 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <style>
+        
+    .hasterror{
+        font-size: 14px;
+        
+        display: block;
+        color:red;
+    }
+    </style>
 </head>
 <body>
 
 <?php ob_start(); session_start();?>
 
-  
+<div class="preloader"></div>
     
   <header class="topbar">
     <div class="container">
@@ -144,41 +153,51 @@
           </div>
         
             
-        <div class="container bg-white p-5" style="margin-top: -50px;  width: 950px;">
+          <div class="container bg-white p-5" style="margin-top: -50px;  width: 950px;">
           <form id="form1" name="form1" method="POST" action = "">
+            <?php $hastaneError = "";?>
+            <?php
+
+
+              if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                  if (isset($_POST["btn"])) {
+                      $hastane = $_POST["hastane"];
+                      
+                      if ($hastane == "") {
+                          $hastaneError = "Lütfen Hastane Seçiniz.";
+                      } else {
+                          $_SESSION["hastane_id"] = $hastane;
+                          header("Location: E-Randevu1.php");
+                          exit;
+                      }
+                  }
+              }
+              ?>
             
               <div class="form-group-center  col-sm-12 col-md-12 col-lg-8 m-5 "  >
                 <label for="hastane" style="font-size: 20px; font-weight: 500; " >Randevu almak istediğiniz hastaneyi seçiniz:</label>
                 <select class="form-control" style="padding: 20px; font-size: 16px; font-weight: 500;" id="hastane" name="hastane" >
+                  <option value="">Hastane Seçiniz</option>
                   <option value="1">LÜLEBURGAZ ÖZEL HASTANESİ</option>
                   <option value="2">BABAESKİ ÖZEL HASTANESİ</option>
                   <option value="3">PINARHİSAR ÖZEL HASTANESİ</option>
                   <option value="4">DEMİRKÖY ÖZEL HASTANESİ</option>
                   <option value="5">VİZE ÖZEL HASTANESİ</option>
                 </select>
-                
+  
+                <span class ="hasterror"><?php echo $hastaneError?></span>
+    
             </div>
-              
-
             
 
               <button  type="submit" name="btn" class="btn btn-primary "  id="btn"  style="padding: 8px 30px; font-size: 20px; margin-left: 40px; ">Devam</button>
  
           </form>
+          
+
         </div>
 
-        <?php 
-
-          if(isset($_POST["btn"])){
-
-            $hastane=$_POST['hastane'];
-            $_SESSION["hastane_id"] = $hastane;
-
-            header("Refresh: 0.5; E-Randevu1.php");
-            
-          }
-
-        ?>  
+          
         
 
         <footer> 
