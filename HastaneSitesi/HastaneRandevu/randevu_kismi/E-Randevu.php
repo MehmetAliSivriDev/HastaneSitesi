@@ -62,7 +62,7 @@
       </div>
     </div>
   </header>
-  
+
   <nav class="navbar navbar-expand-sm bg-danger navbar-dark">
     <a class="navbar-brand" href="../../index.html" title="Özel Kırklareli Hastanesi Logosu"><img src="../../social_media_icons/logo.png" alt="" style="width: 270px;height: 100px;margin: 0;padding: 0;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
