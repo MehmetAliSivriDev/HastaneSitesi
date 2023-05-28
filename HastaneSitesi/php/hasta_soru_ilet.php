@@ -44,14 +44,35 @@
             $sql = "INSERT INTO hasta_soru (`hasta_eposta`, `poliklinik`, `soru`) VALUES
                 (?,?,?)";
             
-           
+            $hastaSql = "Select * from hastalar";
+    
+            $hastaSonuc = mysqli_query($conn,$hastaSql);
+
+            $hastaEpostaKontrol = true;
+
+            if(mysqli_num_rows($hastaSonuc) > 0){
+                while($row = mysqli_fetch_assoc($hastaSonuc)){
+                    $veriHastaEposta = $row["hasta_eposta"];
+
+                    if($hasta_eposta != $veriHastaEposta){
+                        $hastaEpostaKontrol = false;
+                    }
+                    else{
+                        $hastaEpostaKontrol = true;
+                    }
+                
+                }
+            }
+
+
+
             // ifademiniz hazırlıyoruz. parse edilir ve DB sunucu saklanır. Tekrar tekrar kullanılabilir
             $bosKontrol = true;
 
-            if($hasta_eposta == "" || $soru == ""){
+            if($hasta_eposta == "" || $soru == "" || $poliklinik == 0){
 
                 echo("<div class='alert alert-danger' role='alert'>
-                Lütfen email ve soru kısmını boş bırakmayınız!
+                Lütfen Tüm İstenenleri Doldurunuz Boş Bırakmayınız.
               </div>");
 
               header("Refresh: 2; ../index.html");
@@ -60,33 +81,48 @@
             }
             else
             {
-                $stmt = mysqli_prepare($conn,$sql);
-                // sorgumuzda çalıştırılacak parametreleri gönderiyoruz  is -> i = int ve s = string
-                mysqli_stmt_bind_param($stmt, "sss", $hasta_eposta,$poliklinik,$soru);
-                // sorgu çalıştır
-                mysqli_stmt_execute($stmt);
 
-            
-                $result = mysqli_stmt_get_result($stmt);
+                if($hastaEpostaKontrol == false){
 
-                // ------------------------------------------------------------------burya doktor siteden mesaj ile geri donsun yada arasın hastasını
-                if($result == false){
                 
-                        //buraya alert olarak aranacagınız yaz yada doktor mesajlaşması için bişiler  yap
-                    echo("<div class='alert alert-success' role='alert'>
-                    İletiniz başarı ile gönderilmiştir. Doktorlarımız en kısa sürede size ulaşacaktır.
-                </div>");
-                    
-                header("Refresh: 2; ../index.html");
-
+                    echo("<div class='alert alert-danger' role='alert'>
+                    Girdiğiniz Eposta Geçersiz Lütfen Hastanemize Online Randevu Alma Kısmından Kayıt Olun.\n
+                    Ve Tekrar Deneyin.
+                  </div>");
+    
+                  header("Refresh: 4; ../index.html");
+    
                 }
                 else{
-                    echo("<div class='alert alert-danger' role='alert'>
-                    Hata Meydana Geldi.
-                </div>");
+                    $stmt = mysqli_prepare($conn,$sql);
+                    // sorgumuzda çalıştırılacak parametreleri gönderiyoruz  is -> i = int ve s = string
+                    mysqli_stmt_bind_param($stmt, "sss", $hasta_eposta,$poliklinik,$soru);
+                    // sorgu çalıştır
+                    mysqli_stmt_execute($stmt);
 
-                header("Refresh: 2; ../index.html");
+                
+                    $result = mysqli_stmt_get_result($stmt);
+
+                    // ------------------------------------------------------------------burya doktor siteden mesaj ile geri donsun yada arasın hastasını
+                    if($result == false){
+                    
+                            //buraya alert olarak aranacagınız yaz yada doktor mesajlaşması için bişiler  yap
+                        echo("<div class='alert alert-success' role='alert'>
+                        İletiniz başarı ile gönderilmiştir. Doktorlarımız en kısa sürede size ulaşacaktır.
+                    </div>");
+                        
+                    header("Refresh: 2; ../index.html");
+
+                    }
+                    else{
+                        echo("<div class='alert alert-danger' role='alert'>
+                        Hata Meydana Geldi.
+                    </div>");
+
+                    header("Refresh: 2; ../index.html");
+                    }
                 }
+                
             }
 
 
