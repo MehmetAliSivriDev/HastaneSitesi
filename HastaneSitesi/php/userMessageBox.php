@@ -105,6 +105,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="userAccountInfo.php">Hesap Ek Bilgilerini Güncelle</a>
+              <a class="dropdown-item" href="../Hastanelerimiz/Hasta_islemleri.php">Hasta İşlemlerine Git</a>
               <a class="dropdown-item" href="../index.html">Çıkış Yap</a>
             </div>
           </li>   

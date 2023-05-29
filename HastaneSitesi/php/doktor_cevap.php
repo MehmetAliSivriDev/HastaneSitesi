@@ -112,7 +112,20 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
               </li>
             </ul>
             
-          </div>  
+          </div>
+          <div class="profileImage">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="50" height="50" class="rounded-circle">
+              <p class="profileName"><?php echo("Dr. "."$_SESSION[doktor_adi] $_SESSION[doktor_soyadi]"); ?></p>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="../index.html">Çıkış Yap</a>
+            </div>
+          </li>   
+        </ul>
+    </div>  
   
       </nav>
         
@@ -120,11 +133,11 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
       
 
 <div class="gelenkutusu">
-    <h2>Hasta soruları  </h2>
+    <h2>Hasta Soruları  </h2>
     <form method="POST" action="">
 
 
-        <label for="bölüm"></label>
+        <b>Poliklinik</b>
         <select name="bölüm"  id="bölüm">
         <option value="#" ></option>
         <option value="0">Poliklinik Seçin</option>
@@ -204,7 +217,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
     
 
         }
-              }else {"Mesajınız bulunmamaktadır!!! " ;}
+              }else {echo"Mesajınız bulunmamaktadır!!! " ;}
 
 ?>
 

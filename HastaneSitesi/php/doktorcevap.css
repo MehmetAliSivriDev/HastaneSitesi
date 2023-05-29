@@ -17,7 +17,7 @@
     float: initial;
   } 
   .gelenkutusu label::before {
-    content: "Bölüm:";
+    content: "Poliklinik ";
     font-weight: bold;
     margin-right: 5px;
   }
