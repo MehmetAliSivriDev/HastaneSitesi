@@ -265,7 +265,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                 $_SESSION["hasta_soyadi"] = $hasta_soyadi;
                 $_SESSION["hasta_eposta"] = $hasta_eposta;
                 if ($kanError == false && $cinsiyetError == false && $dateError == false) {
-                  header("Refresh: 1; ../Hastanelerimiz/hasta_islemleri.php");
+                  header("Refresh: 2; ../HastaneRandevu/randevu_kismi/E-Randevu.php");
                 }
                 
                 ob_end_flush();
